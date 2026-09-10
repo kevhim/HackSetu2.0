@@ -1,0 +1,1900 @@
+/* ==========================================================================
+   HACKSETU 2.0 - Refined Glassmorphism & Modern Tech Design System
+   Restrained Glass Hierarchy • Strategic Yellow Highlights • Clean Blue Environment
+   ========================================================================== */
+
+:root {
+  /* Core Blue Architecture */
+  --blue-950: #071329;       /* Deep Technical Navy Surface */
+  --blue-900: #0b2559;       /* Ambient Depth Tint */
+  --blue-800: #103783;       /* Secondary Structural Blue */
+  --blue-700: #1769e0;       /* Tech Cobalt Accent */
+  --blue-500: #3b82f6;       /* Bright Brand Blue */
+  --blue-400: #60a5fa;       /* Light Focus & Border Blue */
+
+  /* Strategic Yellow (Action, Live Status, Key Metrics, Focus) */
+  --yellow-400: #ffd43b;
+  --yellow-500: #facc15;
+  --yellow-600: #eab308;
+  --yellow-contrast: #071329;
+
+  /* Typography & Surfaces */
+  --white: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.82);
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --text-dim: rgba(255, 255, 255, 0.45);
+
+  /* Minimalist Glass UI System Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-hover: rgba(255, 255, 255, 0.12);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.16);
+  --glass-border-color: rgba(255, 255, 255, 0.16);
+  --glass-border-hover: rgba(255, 255, 255, 0.26);
+  --glass-border-subtle: rgba(255, 255, 255, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.16);
+  --glass-blur: blur(16px);
+
+  /* Restrained Shadows (Eliminated oversized gaming glows) */
+  --glass-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 var(--glass-highlight);
+  --glass-shadow-hover:
+    0 16px 36px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  --shadow-yellow-btn:
+    0 4px 14px rgba(250, 204, 21, 0.22);
+
+  /* Backward Compatibility & Tiers */
+  --glass-1: var(--glass-bg);
+  --glass-1-hover: var(--glass-bg-hover);
+  --glass-2: rgba(255, 255, 255, 0.05);
+  --glass-2-hover: rgba(255, 255, 255, 0.08);
+  --glass-3: rgba(255, 255, 255, 0.035);
+  --glass-3-hover: rgba(255, 255, 255, 0.06);
+
+  /* Thin Translucent Borders */
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-light: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  --border-yellow: rgba(250, 204, 21, 0.5);
+
+  /* Solid / Semi-Solid Tech Surfaces (Selective non-glass elements) */
+  --surface-card: rgba(11, 37, 89, 0.35);
+  --surface-card-hover: rgba(16, 55, 131, 0.45);
+  --surface-card-border: rgba(255, 255, 255, 0.09);
+  --surface-card-border-hover: rgba(255, 255, 255, 0.18);
+  --surface-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+  --shadow-glass: var(--glass-shadow);
+  --shadow-glass-hover: var(--glass-shadow-hover);
+  --blur-lg: var(--glass-blur);
+  --blur-md: blur(10px);
+  --blur-sm: blur(6px);
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Border Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Explicit Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-max-width: 1240px;
+  --container-padding: 1.5rem;
+}
+
+/* ==========================================================================
+   CSS Reset & Base
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--blue-950);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   Effect 2: Subtle Technical Background Canvas (body::before)
+   Low-contrast developer grid • 1 soft blue glow • 1 subtle yellow accent glow
+   Fades naturally toward bottom • 100% CSS • GPU-composited stationary texture
+   ========================================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-color: #071329;
+  background-image:
+    /* Layer 1: Extremely faint vertical and horizontal grid lines (low contrast) */
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    /* Layer 2: Smooth vertical gradient that makes the grid fade toward the bottom */
+    linear-gradient(180deg, rgba(7, 19, 41, 0) 0%, rgba(7, 19, 41, 0.35) 40%, rgba(7, 19, 41, 0.85) 75%, #071329 100%),
+    /* Layer 3: One soft blue glow for atmospheric depth (centered at top) */
+    radial-gradient(circle 900px at 50% -5%, rgba(23, 105, 224, 0.16), transparent 70%),
+    /* Layer 4: One extremely subtle yellow accent glow (upper right) */
+    radial-gradient(circle 650px at 85% 18%, rgba(250, 204, 21, 0.035), transparent 60%);
+  background-size:
+    48px 48px,
+    48px 48px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .typewriter-cursor {
+    display: none !important;
+  }
+  .js-reveal-enabled .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   Minimalist Glass UI & Tech Surfaces
+   Glass is applied SELECTIVELY (navbar, hero showcase, floating panels, countdown)
+   Content cards use solid/semi-solid tech surfaces to prevent visual haze
+   ========================================================================== */
+
+/* Selective Glass Element: Primary containers, hero showcase, floating panels */
+.glass-primary,
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition:
+    transform var(--transition-normal),
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.glass-primary::before,
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+  pointer-events: none;
+}
+
+.glass-primary:hover,
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Semi-Solid Tech Surfaces: Secondary content cards (Stats, Coordinators, Venue) */
+/* Grounded surfaces with high contrast and thin translucent borders */
+.glass-secondary,
+.glass-subtle {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--surface-card-shadow);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition:
+    transform var(--transition-normal),
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.glass-secondary:hover,
+.glass-subtle:hover {
+  background: var(--surface-card-hover);
+  border-color: var(--surface-card-border-hover);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
+  transform: translateY(-2px);
+}
+
+/* Micro UI: Chips, pill tags, badges */
+.glass-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.glass-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-light);
+}
+
+.glass-icon {
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  color: var(--blue-400);
+}
+
+/* Performance Optimization: Eliminate redundant nested blur shaders */
+/* Since the parent container is already frosted glass, child elements only need translucent tinting */
+.glass-primary .glass-secondary,
+.glass-primary .glass-subtle,
+.glass-primary .glass-chip,
+.glass-primary .glass-icon,
+.glass-primary .countdown-card,
+.glass-primary .meta-chip,
+.glass-primary .hero-tagline-bar,
+.glass-primary .hero-institution-card,
+.glass-card .glass-secondary,
+.glass-card .glass-subtle,
+.glass-card .glass-chip,
+.glass-card .glass-icon,
+.glass-card .countdown-card,
+.glass-card .meta-chip,
+.glass-card .concept-pillars,
+.venue-primary-card .venue-feature-item,
+.venue-info-card .logistic-block {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.section {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.section-header .badge {
+  margin-bottom: 0.85rem;
+}
+
+.section-title-light {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.65rem;
+}
+
+.section-desc-light {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Announcement Bar (Clean Grounded Tech Bar)
+   ========================================================================== */
+.glass-announcement {
+  background: #050e1f;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 0.55rem 0;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 101;
+}
+
+.announcement-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: var(--yellow-500);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
+  animation: pulse-ring 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(250, 204, 21, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
+}
+
+.announcement-badge {
+  background: rgba(250, 204, 21, 0.16);
+  color: var(--yellow-400);
+  border: 1px solid rgba(250, 204, 21, 0.35);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.announcement-text {
+  color: var(--text-secondary);
+}
+
+.announcement-link {
+  color: var(--yellow-400);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.announcement-link:hover {
+  color: var(--yellow-500);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.glass-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7, 19, 41, 0.78);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-subtle);
+  transform: translateZ(0);
+  transition:
+    box-shadow var(--transition-normal),
+    background var(--transition-normal);
+}
+
+.glass-header.scrolled {
+  background: rgba(7, 19, 41, 0.94);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+/* Co-branded Dual Logo Lockup */
+.header-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.amity-header-logo-link {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.amity-header-logo-link:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.amity-nav-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 26px;
+  background: var(--border-subtle);
+}
+
+.hacksetu-header-logo-link {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.hacksetu-header-logo-link:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.hacksetu-nav-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Nav Menu */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.85rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0.4rem 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--white);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: var(--yellow-500);
+  border-radius: 2px;
+}
+
+/* Header CTAs */
+.header-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-register-btn {
+  padding: 0.62rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--glass-3);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--white);
+  border-radius: 2px;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Accessible Mobile Drawer */
+.glass-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(7, 19, 41, 0.96);
+  backdrop-filter: var(--blur-lg);
+  -webkit-backdrop-filter: var(--blur-lg);
+  border-bottom: 2px solid var(--border-light);
+  padding: 1.75rem var(--container-padding);
+  box-shadow: var(--shadow-glass);
+  z-index: 99;
+
+  /* State Management */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition:
+    opacity 200ms ease,
+    visibility 200ms ease,
+    transform 200ms ease;
+}
+
+.glass-drawer.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.mobile-nav-link {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+  display: block;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ==========================================================================
+   Buttons & Badges (Strategic Yellow & Clean Blue)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.72rem 1.6rem;
+  border-radius: var(--radius-md);
+  transition:
+    transform var(--transition-normal),
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-large {
+  padding: 0.9rem 2.1rem;
+  font-size: 1.02rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Yellow = Primary Action */
+.btn-accent {
+  background-color: var(--yellow-500);
+  color: var(--yellow-contrast);
+  font-weight: 800;
+  border: 1px solid var(--yellow-600);
+  box-shadow: var(--shadow-yellow-btn);
+}
+
+.btn-accent:hover {
+  background-color: var(--yellow-400);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(250, 204, 21, 0.32);
+}
+
+/* Restrained Minimalist Glass Button = Secondary Action */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-yellow {
+  background: rgba(250, 204, 21, 0.14);
+  color: var(--yellow-400);
+  border: 1px solid rgba(250, 204, 21, 0.32);
+}
+
+.badge-blue-glass {
+  background: rgba(59, 130, 246, 0.14);
+  color: var(--blue-400);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+/* ==========================================================================
+   Hero Section (Elevated Whitespace & Restrained Glass Showcase)
+   ========================================================================== */
+.hero-section {
+  padding: 4.5rem 0 5.25rem 0;
+  position: relative;
+  text-align: center;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Host Institutional Badge Card (Glass Level 3) */
+.hero-institution-card {
+  padding: 0.75rem 1.6rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+  border-radius: var(--radius-full);
+  background: var(--glass-3);
+  border: 1px solid var(--border-subtle);
+}
+
+.inst-logos-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hero-amity-logo {
+  height: 36px;
+  width: auto;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radius-xs);
+}
+
+.inst-col-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.inst-x {
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--yellow-500);
+}
+
+.acc-badge-glass {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.acc-badge-text {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.acc-badge-sub {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--yellow-400);
+  letter-spacing: 0.08em;
+}
+
+/* Central Hero Showcase Card (Minimalist Glass UI) */
+.hero-glass-showcase {
+  width: 100%;
+  max-width: 960px;
+  padding: 3.25rem 2.75rem;
+  margin-bottom: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tagline-pill-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(59, 130, 246, 0.10);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  color: var(--blue-400);
+  padding: 0.38rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.75rem;
+  text-transform: uppercase;
+}
+
+.tagline-dot-pulse {
+  width: 7px;
+  height: 7px;
+  background-color: var(--yellow-500);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--yellow-500);
+}
+
+/* Hero Official Emblem Showcase */
+.hero-logo-showcase-wrap {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 1.4rem 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  margin-bottom: 2rem;
+  transition: transform var(--transition-normal);
+}
+
+.hero-logo-showcase-wrap:hover {
+  transform: scale(1.01);
+}
+
+.hero-main-emblem {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Battle Subheadline with Restrained Typewriter Effect */
+.subheadline-battle {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+
+.typewriter-wrap {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  color: var(--yellow-400);
+  position: relative;
+  min-height: 1.25em;
+  vertical-align: bottom;
+}
+
+.typewriter-text {
+  color: var(--yellow-400);
+  text-shadow: 0 0 16px rgba(250, 204, 21, 0.25);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 0.95em;
+  background-color: var(--yellow-400);
+  margin-left: 3px;
+  vertical-align: middle;
+  border-radius: 1px;
+  animation: typewriter-blink 0.9s infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 45% {
+    opacity: 1;
+  }
+  50%, 95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.hero-tagline-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: 0.98rem;
+  font-weight: 600;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.highlight-text-yellow {
+  color: var(--yellow-400);
+  font-weight: 800;
+}
+
+.bar-separator {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.philosophy-text {
+  color: var(--text-secondary);
+}
+
+/* Event Metadata Chips (Glass Level 2) */
+.event-meta-bar {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 960px;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+}
+
+.meta-chip {
+  flex: 1 1 280px;
+  padding: 1.1rem 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.meta-chip-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.meta-chip-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-chip-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.meta-chip-value {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* ==========================================================================
+   Countdown Timer (Minimalist Floating Glass Panel & Solid Tech Cells)
+   ========================================================================== */
+.countdown-wrapper {
+  padding: 2.25rem 2.5rem;
+  width: 100%;
+  max-width: 820px;
+  margin-bottom: 2.75rem;
+  text-align: center;
+}
+
+.countdown-header {
+  margin-bottom: 1.45rem;
+}
+
+.countdown-title {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.countdown-card {
+  padding: 1.4rem 0.5rem;
+  background: rgba(7, 19, 41, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.countdown-card:hover {
+  background: rgba(7, 19, 41, 0.82);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.countdown-card-highlight {
+  border: 1px solid var(--border-yellow);
+  background: rgba(250, 204, 21, 0.05);
+}
+
+.countdown-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+/* Yellow strategic highlight on active ticking unit */
+.countdown-card-highlight .countdown-number {
+  color: var(--yellow-400);
+}
+
+.countdown-unit {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Live Event State Banner (when countdown completes) */
+.event-live-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.live-badge-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(250, 204, 21, 0.18);
+  color: var(--yellow-400);
+  border: 1px solid var(--border-yellow);
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.event-live-text {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Hero Action Button Group */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hero-note {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Key Highlights Grid (Grounded Semi-Solid Tech Cards)
+   ========================================================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-card {
+  padding: 1.85rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stat-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Editorial Concept & Modular Grid (Important Feature Cards)
+   ========================================================================== */
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 1.65rem;
+}
+
+.concept-card {
+  padding: 2.35rem 2.15rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Block 1: Philosophy Card */
+.concept-card-large {
+  grid-row: span 2;
+  border-left: 4px solid var(--blue-500);
+  justify-content: space-between;
+}
+
+.concept-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.concept-id {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--blue-400);
+  font-size: 1.2rem;
+}
+
+.concept-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 1.15rem;
+}
+
+.concept-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1.85rem;
+}
+
+.concept-pillars {
+  padding: 1.15rem 1.4rem;
+  margin-top: auto;
+}
+
+.pillar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pillar-arrow {
+  color: var(--text-dim);
+}
+
+.highlight-yellow {
+  background: var(--yellow-500);
+  color: var(--yellow-contrast);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+}
+
+/* Block 2: Prize Pool Spotlight Card */
+.concept-card-prize {
+  border-top: 3px solid var(--yellow-500);
+}
+
+.prize-badge-wrap {
+  margin-bottom: 0.85rem;
+}
+
+.prize-icon-display {
+  color: var(--yellow-400);
+  margin-bottom: 0.85rem;
+}
+
+.prize-headline {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.prize-status {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.3vw, 2rem);
+  font-weight: 800;
+  color: var(--yellow-400);
+  line-height: 1.1;
+  margin-bottom: 0.65rem;
+}
+
+.prize-subtext {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1.35rem;
+}
+
+.prize-footer-tags {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+}
+
+.prize-footer-tags span {
+  color: var(--yellow-400);
+}
+
+/* Block 3: Registration Fee Card */
+.concept-card-fee {
+  border-top: 3px solid var(--blue-500);
+}
+
+.fee-badge-wrap {
+  margin-bottom: 0.85rem;
+}
+
+.fee-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+.fee-amount {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 3.2vw, 2.85rem);
+  font-weight: 900;
+  color: var(--yellow-400);
+  line-height: 1;
+}
+
+.fee-scope {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.fee-detail {
+  margin-bottom: 1.35rem;
+}
+
+.fee-chip {
+  display: inline-block;
+  background: rgba(250, 204, 21, 0.16);
+  color: var(--yellow-400);
+  border: 1px solid rgba(250, 204, 21, 0.35);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.45rem;
+}
+
+.fee-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Block 4: Motto Card */
+.concept-card-motto {
+  grid-column: 1 / -1;
+  padding: 1.85rem;
+  text-align: center;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1.5px dashed var(--border-light);
+}
+
+.motto-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--yellow-400);
+  text-transform: uppercase;
+}
+
+.motto-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.motto-sub {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Dedicated Semantic #venue Section (Elevated Spacing)
+   ========================================================================== */
+.section-venue {
+  position: relative;
+}
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.65rem;
+}
+
+.venue-primary-card {
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 4px solid var(--yellow-500);
+}
+
+.venue-tag-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.35rem;
+  flex-wrap: wrap;
+}
+
+.venue-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+}
+
+.venue-address {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.venue-address strong {
+  color: var(--white);
+}
+
+.venue-features-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+  margin-bottom: 2rem;
+}
+
+.venue-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.venue-feature-icon {
+  color: var(--yellow-400);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.venue-feature-text h5 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+}
+
+.venue-feature-text p {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.venue-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.venue-info-card {
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  border-top: 3px solid var(--blue-500);
+}
+
+.venue-info-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.logistic-block {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem;
+}
+
+.logistic-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--yellow-400);
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.logistic-value {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Call To Action Banner (#register Section - Minimalist Glass Feature)
+   ========================================================================== */
+.section-cta {
+  padding: 5.5rem 0;
+}
+
+.cta-banner {
+  padding: 3.75rem 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.75rem;
+  border-left: 4px solid var(--yellow-500);
+}
+
+.cta-content {
+  max-width: 640px;
+}
+
+.cta-content .badge {
+  margin-bottom: 1rem;
+}
+
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--white);
+}
+
+.cta-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.cta-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Footer (Grounded Tech Footer Baseline)
+   ========================================================================== */
+.glass-footer {
+  margin-top: auto;
+  background: #050e1f;
+  border-top: 1px solid var(--border-subtle);
+  padding: 5rem 0 2.25rem 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 2.75rem;
+  margin-bottom: 2.75rem;
+}
+
+.footer-logos-duo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.footer-amity-logo {
+  height: 32px;
+  width: auto;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xs);
+}
+
+.footer-divider-line {
+  width: 1px;
+  height: 26px;
+  background: var(--border-subtle);
+}
+
+.footer-hacksetu-logo {
+  height: 32px;
+  width: auto;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs);
+}
+
+.footer-brand p {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 0.9375rem;
+  margin-bottom: 1.35rem;
+  max-width: 380px;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.social-link:hover {
+  background: var(--yellow-500);
+  color: var(--yellow-contrast);
+  border-color: var(--yellow-500);
+}
+
+.social-handle {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--yellow-400);
+}
+
+.social-handle:hover {
+  color: var(--yellow-500);
+  text-decoration: underline;
+}
+
+.footer-col h5 {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  margin-bottom: 1.15rem;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  transition:
+    color var(--transition-fast),
+    padding-left var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--yellow-400);
+  padding-left: 4px;
+}
+
+.footer-campus-info {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.footer-campus-info strong {
+  color: var(--white);
+}
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--yellow-400);
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .concept-grid,
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-card-large {
+    grid-row: auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .announcement-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .header-register-btn {
+    display: none;
+  }
+
+  .header-container {
+    height: 68px;
+  }
+
+  .amity-nav-img {
+    height: 25px;
+  }
+
+  .hacksetu-nav-img {
+    height: 25px;
+  }
+
+  .section {
+    padding: 3.75rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-section {
+    padding: 2.75rem 0 3.75rem 0;
+  }
+
+  .hero-institution-card {
+    border-radius: var(--radius-lg);
+    padding: 0.75rem 1rem;
+  }
+
+  .hero-glass-showcase {
+    padding: 1.85rem 1.25rem;
+  }
+
+  .hero-tagline-bar {
+    border-radius: var(--radius-md);
+    padding: 0.6rem 1rem;
+    text-align: center;
+  }
+
+  .bar-separator {
+    display: none;
+  }
+
+  .countdown-wrapper {
+    padding: 1.4rem 1rem;
+  }
+
+  .countdown-grid {
+    gap: 0.55rem;
+  }
+
+  .countdown-card {
+    padding: 0.95rem 0.25rem;
+  }
+
+  .venue-features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+  }
+
+  .cta-button-group {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.85rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .countdown-number {
+    font-size: 1.7rem;
+  }
+
+  .countdown-unit {
+    font-size: 0.65rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Effect 4: Minimal Scroll Reveal (IntersectionObserver Based)
+   Editorial styling: Subtle vertical translation (18px), soft blur reduction (3px),
+   modern cubic-bezier easing, zero layout shift (CLS).
+   Progressive enhancement: 100% visible if JS is disabled or unavailable.
+   ========================================================================== */
+.reveal-on-scroll {
+  /* Baseline: Content is completely visible and accessible if JS fails */
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.js-reveal-enabled .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(3px);
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--reveal-delay, 0) * 75ms);
+  will-change: opacity, transform, filter;
+}
+
+.js-reveal-enabled .reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.js-reveal-enabled .glass-primary.reveal-on-scroll.is-revealed:hover,
+.js-reveal-enabled .glass-secondary.reveal-on-scroll.is-revealed:hover,
+.js-reveal-enabled .concept-card.reveal-on-scroll.is-revealed:hover,
+.js-reveal-enabled .stat-card.reveal-on-scroll.is-revealed:hover,
+.js-reveal-enabled .venue-primary-card.reveal-on-scroll.is-revealed:hover,
+.js-reveal-enabled .venue-info-card.reveal-on-scroll.is-revealed:hover,
+.js-reveal-enabled .cta-banner.reveal-on-scroll.is-revealed:hover {
+  transform: translateY(-2px);
+}
+
