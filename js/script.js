@@ -3,14 +3,21 @@
  * Zero dependencies: Real-time countdown lifecycle, accessible mobile drawer, scroll interactions
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initHackSetu() {
   initTypewriter();
   initScrollReveal();
   initCountdownTimer();
   initMobileDrawer();
   initHeaderScroll();
   initSmoothScroll();
-});
+  initActiveNav();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHackSetu);
+} else {
+  initHackSetu();
+}
 
 /**
  * Real-Time Countdown Timer with Full Lifecycle State
@@ -298,4 +305,168 @@ function initScrollReveal() {
     revealObserver.observe(el);
   });
 }
+
+/**
+ * EFFECT 5: ACTIVE SECTION NAVIGATION
+ * Indicates which section of the page the visitor is currently viewing.
+ * Uses IntersectionObserver, Vanilla JS, and the existing navigation structure.
+ * Handles: About, Highlights, Prizes, Team, Venue, Register.
+ * Smoothly transitions active state, supports upward & downward scrolling, and click navigation.
+ */
+function initActiveNav() {
+  const targetSectionIds = ['highlights', 'about', 'prizes', 'team', 'venue', 'register'];
+
+  // Query valid elements currently present in the DOM
+  const trackedSections = [];
+  targetSectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      trackedSections.push({ id, element: el });
+    }
+  });
+
+  if (!trackedSections.length) return;
+
+  const desktopLinks = document.querySelectorAll('.nav-links .nav-link, .header-cta-wrap .header-register-btn');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-links .mobile-nav-link, .mobile-drawer-footer a[href="#register"]');
+  const allNavLinks = [...desktopLinks, ...mobileLinks];
+
+  let currentActiveId = null;
+  let isClickScrolling = false;
+  let clickScrollTimeout = null;
+
+  function setActive(activeId) {
+    if (activeId === currentActiveId) return;
+    currentActiveId = activeId;
+
+    allNavLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href === `#${activeId}`) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function getFocalLine() {
+    const header = document.querySelector('.site-header');
+    const headerHeight = header ? header.offsetHeight : 76;
+    return headerHeight + 20; // Reading focal line ~96px from viewport top
+  }
+
+  function computeActiveSection() {
+    if (isClickScrolling) return;
+
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // Boundary 1: At top of page (Hero section), no section is active
+    if (scrollY < 180) {
+      setActive(null);
+      return;
+    }
+
+    // Boundary 2: At or near bottom of page, activate Register section
+    if (windowHeight + scrollY >= docHeight - 40) {
+      setActive('register');
+      return;
+    }
+
+    const focalLine = getFocalLine();
+
+    // Nested section check: #prizes is located inside #about
+    const prizesEl = document.getElementById('prizes');
+    if (prizesEl) {
+      const pRect = prizesEl.getBoundingClientRect();
+      // If prizes card covers the focal reading line
+      if (pRect.top <= focalLine + 60 && pRect.bottom >= focalLine) {
+        setActive('prizes');
+        return;
+      }
+    }
+
+    // Determine which section currently encompasses or is closest to the focal line
+    let bestMatch = null;
+    let minDistance = Infinity;
+
+    for (const item of trackedSections) {
+      if (item.id === 'prizes') continue; // Handled specifically above
+
+      const rect = item.element.getBoundingClientRect();
+
+      // Section covers the focal line
+      if (rect.top <= focalLine && rect.bottom > focalLine) {
+        bestMatch = item.id;
+        break;
+      }
+
+      // Section top is approaching focal line
+      const dist = Math.abs(rect.top - focalLine);
+      if (rect.top > focalLine && dist < 120 && dist < minDistance) {
+        minDistance = dist;
+        bestMatch = item.id;
+      }
+    }
+
+    if (bestMatch) {
+      setActive(bestMatch);
+    }
+  }
+
+  // IntersectionObserver for reactive boundary detection
+  const supportsObserver = 'IntersectionObserver' in window;
+  if (supportsObserver) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-76px 0px -40% 0px',
+      threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    };
+
+    const sectionObserver = new IntersectionObserver(() => {
+      if (!isClickScrolling) {
+        computeActiveSection();
+      }
+    }, observerOptions);
+
+    trackedSections.forEach(item => {
+      sectionObserver.observe(item.element);
+    });
+  }
+
+  // Passive scroll listener ensures zero latency during rapid scrolling or trackpad flicks
+  window.addEventListener('scroll', () => {
+    if (!isClickScrolling) {
+      computeActiveSection();
+    }
+  }, { passive: true });
+
+  // Smooth link click coordination
+  const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
+  allAnchorLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      const targetId = href.substring(1);
+
+      if (targetSectionIds.includes(targetId)) {
+        isClickScrolling = true;
+        setActive(targetId);
+
+        if (clickScrollTimeout) clearTimeout(clickScrollTimeout);
+        clickScrollTimeout = setTimeout(() => {
+          isClickScrolling = false;
+          computeActiveSection();
+        }, 850);
+      }
+    });
+  });
+
+  // Run initial state calculation
+  computeActiveSection();
+}
+
 
