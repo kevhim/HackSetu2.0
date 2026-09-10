@@ -31,7 +31,7 @@ Rooted in the Sanskrit concept of *"Setu"* (Bridge), HackSetu bridges creative s
 - **Venue**: E-Block Seminar Hall, ASET, Amity University Madhya Pradesh, Maharajpura Dang, Gwalior – 474005
 - **Team Size**: Team of 4 members
 - **Fee**: ₹1,200 per team (₹300/member, includes food, midnight snacks, 24/7 campus access, accommodation, and event kits)
-- **Prizes**: ₹2,00,000 (Total Prize Pool — Cash Awards, Track Bounties, Cloud Credits & Tool Grants)
+- **Prizes**: ₹2,00,000 (Total Prize Pool — Cash Awards, Track Rewards, Cloud Credits & Tool Grants)
 
 ---
 
