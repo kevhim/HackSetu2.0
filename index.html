@@ -6,145 +6,187 @@
   <title>HACKSETU 2.0 | The Ultimate Coding Battle — Amity University</title>
   <meta name="description" content="A National-Level 48-Hour Hackathon by Amity Coding Club (ACC) at Amity University Madhya Pradesh. 22-24 October 2026.">
   
-  <!-- Modern Geometric Typography with display=swap for high performance -->
+  <!-- Modern Geometric Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Tailwind CSS CDN with Brand Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#0A1B3D',
+              900: '#0F2A5C',
+              800: '#153A78',
+              700: '#1D4ED8',
+              600: '#2563EB',
+              100: '#E7EEFB',
+              50:  '#F4F8FE',
+            },
+            gold: {
+              700: '#B8860B',
+              600: '#CA9A0C',
+              500: '#F5B914',
+              400: '#FACC15',
+              100: '#FEF3D6',
+            },
+            ink: {
+              900: '#101828',
+              600: '#475467',
+              400: '#98A2B3',
+            },
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS (animations, grid texture, scroll-reveal) -->
+  <link rel="stylesheet" href="css/custom.css">
 </head>
-<body>
+<body class="font-body bg-navy-50 text-ink-900 antialiased min-h-screen flex flex-col overflow-x-hidden relative">
 
-  <!-- Top Announcement Bar (Frosted Glass) -->
-  <aside class="announcement-bar glass-announcement" aria-label="Announcement">
-    <div class="container announcement-inner">
-      <div class="announcement-content">
+  <!-- ================================================================
+       ANNOUNCEMENT BAR
+       ================================================================ -->
+  <aside class="bg-gold-400 border-b border-gold-500/30 py-2.5 text-sm relative z-[101]" aria-label="Announcement">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3 flex-wrap">
         <span class="pulse-indicator"></span>
-        <span class="announcement-badge">NATIONAL 48-HR HACKATHON</span>
-        <span class="announcement-text">Registration open for colleges across India &bull; 22–24 October 2026</span>
+        <span class="bg-navy-900/10 text-navy-900 border border-navy-900/20 px-2.5 py-0.5 rounded text-xs font-extrabold tracking-wide">NATIONAL 48-HR HACKATHON</span>
+        <span class="text-navy-900/80">Registration open for colleges across India &bull; 22–24 October 2026</span>
       </div>
-      <a href="#register" class="announcement-link">Register Team &rarr;</a>
+      <a href="#register" class="text-navy-900 font-bold whitespace-nowrap hover:underline transition-all duration-150">Register Team &rarr;</a>
     </div>
   </aside>
 
-  <!-- Sticky Main Header (Frosted Glass) -->
-  <header class="site-header glass-header" id="header">
-    <div class="container header-container">
+  <!-- ================================================================
+       HEADER / NAVIGATION
+       ================================================================ -->
+  <header class="sticky top-0 z-[100] bg-navy-900 border-b border-white/10 transition-shadow duration-300" id="header">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between h-[76px]">
       
-      <!-- Co-Branded Dual Logo Lockup in Navigation -->
-      <div class="header-brand-lockup">
-        <!-- Amity University Logo -->
-        <a href="https://amity.edu/gwalior" target="_blank" rel="noopener noreferrer" class="amity-header-logo-link" title="Amity University Madhya Pradesh">
-          <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="amity-nav-img">
+      <!-- Co-Branded Dual Logo Lockup -->
+      <div class="flex items-center gap-3.5">
+        <a href="https://amity.edu/gwalior" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white/95 p-1.5 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" title="Amity University Madhya Pradesh">
+          <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="h-[30px] w-auto object-contain">
         </a>
-
-        <span class="brand-divider" aria-hidden="true"></span>
-
-        <!-- HackSetu 2.0 Official Logo -->
-        <a href="index.html" class="hacksetu-header-logo-link" aria-label="HackSetu 2.0 Home">
-          <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0" class="hacksetu-nav-img">
+        <span class="w-px h-[26px] bg-white/20" aria-hidden="true"></span>
+        <a href="index.html" class="flex items-center bg-white/95 py-1 px-3 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" aria-label="HackSetu 2.0 Home">
+          <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0" class="h-[32px] w-auto object-contain">
         </a>
       </div>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="nav-menu" aria-label="Primary Navigation">
-        <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#highlights" class="nav-link">Highlights</a></li>
-          <li><a href="#prizes" class="nav-link">Prizes</a></li>
-          <li><a href="#venue" class="nav-link">Venue</a></li>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block" aria-label="Primary Navigation">
+        <ul class="flex items-center gap-7 list-none">
+          <li><a href="#about" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">About</a></li>
+          <li><a href="#highlights" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Highlights</a></li>
+          <li><a href="#prizes" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Prizes</a></li>
+          <li><a href="#venue" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Venue</a></li>
         </ul>
       </nav>
 
-      <!-- Header Action -->
-      <div class="header-cta-wrap">
-        <a href="#register" class="btn btn-accent header-register-btn">
+      <!-- Header Actions -->
+      <div class="flex items-center gap-4">
+        <a href="#register" class="header-register-btn hidden md:inline-flex items-center gap-2 bg-gold-400 text-navy-900 font-extrabold text-sm px-5 py-2.5 rounded-xl tracking-wide hover:bg-gold-500 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all duration-150">
           <span>REGISTER</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </a>
-        <!-- Accessible Mobile Hamburger -->
-        <button class="mobile-menu-btn glass-chip" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
-          <span></span>
-          <span></span>
-          <span></span>
+        <!-- Mobile Hamburger -->
+        <button class="mobile-menu-btn flex md:hidden flex-col justify-center items-center gap-[5px] w-[42px] h-[42px] border border-white/20 rounded-lg bg-white/5 cursor-pointer hover:bg-white/10 transition-all duration-150" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+          <span class="block w-[22px] h-[2px] bg-white rounded-sm transition-transform duration-150"></span>
+          <span class="block w-[22px] h-[2px] bg-white rounded-sm transition-opacity duration-150"></span>
+          <span class="block w-[22px] h-[2px] bg-white rounded-sm transition-transform duration-150"></span>
         </button>
       </div>
     </div>
 
-    <!-- Accessible Mobile Dropdown Navigation -->
-    <div class="mobile-drawer glass-drawer" id="mobileDrawer" role="region" aria-label="Mobile Navigation">
-      <ul class="mobile-nav-links">
-        <li><a href="#about" class="mobile-nav-link">About</a></li>
-        <li><a href="#highlights" class="mobile-nav-link">Highlights</a></li>
-        <li><a href="#prizes" class="mobile-nav-link">Prizes</a></li>
-        <li><a href="#venue" class="mobile-nav-link">Venue</a></li>
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer absolute top-full left-0 w-full bg-navy-900 border-b-2 border-white/15 px-6 py-7 shadow-xl z-[99]" id="mobileDrawer" role="region" aria-label="Mobile Navigation">
+      <ul class="list-none flex flex-col gap-3.5 mb-6">
+        <li><a href="#about" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">About</a></li>
+        <li><a href="#highlights" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Highlights</a></li>
+        <li><a href="#prizes" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Prizes</a></li>
+        <li><a href="#venue" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Venue</a></li>
       </ul>
-      <div class="mobile-drawer-footer">
-        <a href="#register" class="btn btn-accent btn-full">REGISTER NOW</a>
+      <div>
+        <a href="#register" class="inline-flex items-center justify-center w-full bg-gold-400 text-navy-900 font-extrabold py-3 rounded-xl hover:bg-gold-500 transition-colors duration-150">REGISTER NOW</a>
       </div>
     </div>
   </header>
 
   <main id="main-content">
     
-    <!-- Hero Section -->
-    <section class="hero-section" id="hero">
-      <div class="container hero-container">
+    <!-- ================================================================
+         HERO SECTION
+         ================================================================ -->
+    <section class="py-16 md:py-20 relative text-center" id="hero">
+      <div class="max-w-[1240px] mx-auto px-6 flex flex-col items-center relative z-10">
 
-        <!-- Host Institutional Badge (Glass Level 3) -->
-        <div class="hero-institution-card">
-          <div class="inst-logos-flex">
-            <div class="inst-col">
-              <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh Logo" class="hero-amity-logo">
-            </div>
-            <div class="inst-col-divider">
-              <span class="inst-x">&times;</span>
-              <span class="inst-tag">PRESENTS</span>
-            </div>
-            <div class="inst-col">
-              <div class="acc-badge-glass">
-                <span class="acc-badge-text">AMITY CODING CLUB (ACC)</span>
-                <span class="acc-badge-sub">BUILD &bull; COLLABORATE &bull; INNOVATE</span>
-              </div>
-            </div>
+        <!-- Host Institutional Badge -->
+        <div class="inline-flex items-center gap-5 bg-white border border-navy-100 shadow-sm rounded-full px-6 py-3 mb-8 flex-wrap justify-center reveal-on-scroll">
+          <div>
+            <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh Logo" class="h-9 w-auto bg-white p-0.5 rounded">
+          </div>
+          <div class="flex items-center gap-1.5 text-ink-400 text-xs font-bold tracking-widest">
+            <span class="text-lg leading-none text-gold-500">&times;</span>
+            <span>PRESENTS</span>
+          </div>
+          <div class="flex flex-col text-left">
+            <span class="font-display text-sm font-extrabold text-navy-950 tracking-wide">AMITY CODING CLUB (ACC)</span>
+            <span class="text-[0.6875rem] font-bold text-gold-600 tracking-wider">BUILD &bull; COLLABORATE &bull; INNOVATE</span>
           </div>
         </div>
 
-        <!-- Hero Center Showcase with Official HackSetu 2.0 Logo (Glass Level 1) -->
-        <div class="hero-glass-showcase glass-primary">
+        <!-- Hero Center Showcase -->
+        <div class="w-full max-w-[960px] mb-10">
           
-          <div class="tagline-pill-glass">
-            <span class="tagline-dot-pulse"></span>
+          <!-- Tagline Pill -->
+          <div class="inline-flex items-center gap-2.5 bg-navy-900/5 border border-navy-900/10 text-navy-800 px-5 py-1.5 rounded-full text-[0.8125rem] font-extrabold tracking-wider uppercase mb-7 reveal-on-scroll">
+            <span class="w-[7px] h-[7px] bg-gold-500 rounded-full flex-shrink-0"></span>
             A NATIONAL-LEVEL 48-HOUR HACKATHON
           </div>
 
-          <!-- Official HackSetu 2.0 Emblem Display -->
-          <div class="hero-logo-showcase-wrap">
-            <img src="assets/images/hacksetu-logo.png" alt="HACKSETU 2.0 - Code | Connect | Create A Better Tomorrow" class="hero-main-emblem">
+          <!-- Official Emblem -->
+          <div class="w-full max-w-[580px] mx-auto bg-white p-5 md:p-6 rounded-2xl shadow-md border border-navy-100 mb-8 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-150 reveal-on-scroll">
+            <img src="assets/images/hacksetu-logo.png" alt="HACKSETU 2.0 - Code | Connect | Create A Better Tomorrow" class="w-full h-auto object-contain">
           </div>
 
-          <!-- Battle Subheadline with Restrained Typewriter Phrase -->
-          <div class="hero-subheadline">
-            <h1 class="subheadline-battle">
-              <span class="battle-static">BUILD THE FUTURE OF </span>
-              <span class="typewriter-wrap"><span class="typewriter-text" id="typewriterText">INNOVATION</span><span class="typewriter-cursor" aria-hidden="true"></span></span>
+          <!-- Battle Subheadline with Typewriter -->
+          <div class="reveal-on-scroll">
+            <h1 class="font-display text-2xl md:text-4xl font-extrabold tracking-wide uppercase text-navy-950 mb-3 leading-tight">
+              <span>BUILD THE FUTURE OF </span>
+              <span class="inline-flex items-center whitespace-nowrap relative" style="min-height: 1.25em; vertical-align: bottom;">
+                <span class="text-gold-600" id="typewriterText">INNOVATION</span>
+                <span class="typewriter-cursor" aria-hidden="true"></span>
+              </span>
             </h1>
-            <div class="hero-tagline-bar glass-secondary">
-              <span class="highlight-text-yellow">48 Hours Non-Stop</span>
-              <span class="bar-separator">|</span>
-              <span class="philosophy-text">Code. Collaborate. Create. Build. Impact.</span>
+            <div class="inline-flex items-center gap-3 bg-navy-50 border border-navy-100 px-5 py-2 rounded-full text-base font-semibold flex-wrap justify-center">
+              <span class="text-gold-700 font-extrabold">48 Hours Non-Stop</span>
+              <span class="text-navy-200 hidden sm:inline">|</span>
+              <span class="text-ink-600">Code. Collaborate. Create. Build. Impact.</span>
             </div>
           </div>
-
         </div>
 
-        <!-- Event Metadata Badges / Info Chips (Glass Level 2) -->
-        <div class="event-meta-bar">
-          <div class="meta-chip glass-secondary">
-            <div class="meta-chip-icon glass-icon">
+        <!-- Event Metadata Chips -->
+        <div class="flex items-stretch justify-center gap-4 w-full max-w-[960px] mb-8 flex-wrap reveal-on-scroll">
+          
+          <div class="flex-1 min-w-[260px] bg-white border border-navy-100 shadow-sm rounded-xl p-4 flex items-center gap-4 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center flex-shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -152,27 +194,27 @@
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
             </div>
-            <div class="meta-chip-content">
-              <span class="meta-chip-label">HACKATHON DATES</span>
-              <strong class="meta-chip-value">22nd – 24th October 2026</strong>
+            <div class="flex flex-col">
+              <span class="text-[0.72rem] font-bold tracking-widest text-ink-400 uppercase">HACKATHON DATES</span>
+              <strong class="text-[0.96rem] font-bold text-navy-950">22nd – 24th October 2026</strong>
             </div>
           </div>
 
-          <div class="meta-chip glass-secondary">
-            <div class="meta-chip-icon glass-icon">
+          <div class="flex-1 min-w-[260px] bg-white border border-navy-100 shadow-sm rounded-xl p-4 flex items-center gap-4 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center flex-shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
             </div>
-            <div class="meta-chip-content">
-              <span class="meta-chip-label">EVENT VENUE</span>
-              <strong class="meta-chip-value">Amity University Madhya Pradesh, Gwalior</strong>
+            <div class="flex flex-col">
+              <span class="text-[0.72rem] font-bold tracking-widest text-ink-400 uppercase">EVENT VENUE</span>
+              <strong class="text-[0.96rem] font-bold text-navy-950">Amity University Madhya Pradesh, Gwalior</strong>
             </div>
           </div>
 
-          <div class="meta-chip glass-secondary">
-            <div class="meta-chip-icon glass-icon">
+          <div class="flex-1 min-w-[260px] bg-white border border-navy-100 shadow-sm rounded-xl p-4 flex items-center gap-4 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center flex-shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 21h18"></path>
                 <path d="M5 21V7l8-4v18"></path>
@@ -182,85 +224,76 @@
                 <path d="M9 17h1"></path>
               </svg>
             </div>
-            <div class="meta-chip-content">
-              <span class="meta-chip-label">OFFLINE LOCATION</span>
-              <strong class="meta-chip-value">E-Block Seminar Hall, ASET, AUMP</strong>
+            <div class="flex flex-col">
+              <span class="text-[0.72rem] font-bold tracking-widest text-ink-400 uppercase">OFFLINE LOCATION</span>
+              <strong class="text-[0.96rem] font-bold text-navy-950">E-Block Seminar Hall, ASET, AUMP</strong>
             </div>
           </div>
         </div>
 
-        <!-- 4-Unit Live Countdown Timer (Premium Minimal) -->
-        <div class="countdown-minimal-wrapper geo-accent" id="countdownWrapper" aria-label="Event Countdown">
-          <div class="countdown-minimal-grid" id="countdownGrid">
-            
-            <div class="countdown-unit-wrap">
-              <span class="countdown-number" id="cdDays">00</span>
-              <span class="countdown-label">DAYS</span>
+        <!-- Countdown Timer -->
+        <div class="w-full max-w-[820px] mb-10 text-center reveal-on-scroll" id="countdownWrapper" aria-label="Event Countdown">
+          <div class="flex items-center justify-between gap-4 sm:gap-6" id="countdownGrid">
+            <div class="flex flex-col items-center flex-1">
+              <span class="font-display text-5xl sm:text-6xl font-light text-navy-950 leading-none mb-2 tabular-nums" id="cdDays" style="font-feature-settings: 'tnum' on, 'lnum' on;">00</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold tracking-[0.15em] text-ink-400 uppercase">DAYS</span>
             </div>
-            
-            <div class="countdown-divider"></div>
-            
-            <div class="countdown-unit-wrap">
-              <span class="countdown-number" id="cdHours">00</span>
-              <span class="countdown-label">HOURS</span>
+            <div class="w-px h-[60px] bg-gradient-to-b from-transparent via-navy-200 to-transparent hidden sm:block"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="font-display text-5xl sm:text-6xl font-light text-navy-950 leading-none mb-2 tabular-nums" id="cdHours" style="font-feature-settings: 'tnum' on, 'lnum' on;">00</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold tracking-[0.15em] text-ink-400 uppercase">HOURS</span>
             </div>
-            
-            <div class="countdown-divider"></div>
-            
-            <div class="countdown-unit-wrap">
-              <span class="countdown-number" id="cdMinutes">00</span>
-              <span class="countdown-label">MINUTES</span>
+            <div class="w-px h-[60px] bg-gradient-to-b from-transparent via-navy-200 to-transparent hidden sm:block"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="font-display text-5xl sm:text-6xl font-light text-navy-950 leading-none mb-2 tabular-nums" id="cdMinutes" style="font-feature-settings: 'tnum' on, 'lnum' on;">00</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold tracking-[0.15em] text-ink-400 uppercase">MINUTES</span>
             </div>
-            
-            <div class="countdown-divider"></div>
-            
-            <div class="countdown-unit-wrap highlight">
-              <span class="countdown-number" id="cdSeconds">00</span>
-              <span class="countdown-label">SECONDS</span>
+            <div class="w-px h-[60px] bg-gradient-to-b from-transparent via-navy-200 to-transparent hidden sm:block"></div>
+            <div class="flex flex-col items-center flex-1 countdown-seconds-pulse">
+              <span class="font-display text-5xl sm:text-6xl font-light text-gold-600 leading-none mb-2 tabular-nums" id="cdSeconds" style="font-feature-settings: 'tnum' on, 'lnum' on;">00</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold tracking-[0.15em] text-gold-700 uppercase">SECONDS</span>
             </div>
-            
           </div>
         </div>
 
         <!-- Hero Actions / CTAs -->
-        <div class="hero-actions">
-          <a href="#register" class="btn btn-accent btn-large">
+        <div class="flex items-center justify-center gap-4 mb-5 flex-wrap">
+          <a href="https://amitycodingclub.github.io/hacksetu-register" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold-400 text-navy-900 font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-gold-500 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all duration-150">
             <span>REGISTER YOUR TEAM</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <a href="#about" class="btn btn-glass btn-large">
+          <a href="#about" class="inline-flex items-center gap-2 border-2 border-navy-900 text-navy-900 font-bold text-base px-8 py-3.5 rounded-xl hover:bg-navy-900 hover:text-white hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150">
             <span>LEARN ABOUT HACKSETU</span>
           </a>
         </div>
 
         <!-- Trust Subtext -->
-        <p class="hero-note">
+        <p class="text-sm text-ink-600 font-medium">
           &bull; Max 4 Members per Team &bull; Registration Fee: &#8377;1,600 / Team &bull; Open across India
         </p>
 
       </div>
     </section>
 
-    <!-- Key Highlights Grid (Glass Level 2) -->
-    <section class="section section-stats" id="highlights">
-      <div class="bg-glow-shift"></div>
-      <div class="container">
+    <!-- ================================================================
+         KEY HIGHLIGHTS GRID
+         ================================================================ -->
+    <section class="py-20 md:py-24 bg-navy-50" id="highlights">
+      <div class="max-w-[1240px] mx-auto px-6">
         
-        <div class="section-header reveal-on-scroll" style="text-align: left; margin-bottom: 4rem;">
-          <div class="accent-line-expand"></div>
-          <div class="reveal-heading-wrap">
-            <h2 class="section-title-light reveal-heading">THE HACKATHON IN NUMBERS</h2>
-          </div>
-          <p class="editorial-subtext reveal-card">48 continuous hours of architecture, debugging, collaboration, and deployment for top talent across the nation.</p>
+        <div class="mb-12 reveal-on-scroll">
+          <div class="w-20 h-0.5 bg-gold-500 mb-5"></div>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-3">The Hackathon in Numbers</h2>
+          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">48 continuous hours of architecture, debugging, collaboration, and deployment for top talent across the nation.</p>
         </div>
 
-        <div class="stats-grid">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <!-- Metric 1 -->
-          <div class="stat-card glass-secondary reveal-on-scroll" style="--reveal-delay: 0;">
-            <div class="stat-icon-wrap glass-icon">
+          <div class="bg-white border border-navy-100 shadow-sm rounded-2xl p-7 flex flex-col gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 reveal-on-scroll" style="--reveal-delay: 0;">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -268,29 +301,29 @@
                 <line x1="16" y1="3.13" x2="16" y2="3.13"></line>
               </svg>
             </div>
-            <div class="stat-content">
-              <h3 class="stat-value">75 TEAMS</h3>
-              <p class="stat-label">~300 Participants &bull; National Level</p>
+            <div>
+              <h3 class="font-display text-xl font-extrabold text-navy-950 tracking-tight mb-1">75 TEAMS</h3>
+              <p class="text-sm text-ink-600">~300 Participants &bull; National Level</p>
             </div>
           </div>
 
           <!-- Metric 2 -->
-          <div class="stat-card glass-secondary reveal-on-scroll" style="--reveal-delay: 1;">
-            <div class="stat-icon-wrap glass-icon">
+          <div class="bg-white border border-navy-100 shadow-sm rounded-2xl p-7 flex flex-col gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 reveal-on-scroll" style="--reveal-delay: 1;">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
             </div>
-            <div class="stat-content">
-              <h3 class="stat-value">PAN-INDIA</h3>
-              <p class="stat-label">Open for Colleges Across India</p>
+            <div>
+              <h3 class="font-display text-xl font-extrabold text-navy-950 tracking-tight mb-1">PAN-INDIA</h3>
+              <p class="text-sm text-ink-600">Open for Colleges Across India</p>
             </div>
           </div>
 
           <!-- Metric 3 -->
-          <div class="stat-card glass-secondary reveal-on-scroll" style="--reveal-delay: 2;">
-            <div class="stat-icon-wrap glass-icon">
+          <div class="bg-white border border-navy-100 shadow-sm rounded-2xl p-7 flex flex-col gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 reveal-on-scroll" style="--reveal-delay: 2;">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -298,15 +331,15 @@
                 <line x1="22" y1="11" x2="16" y2="11"></line>
               </svg>
             </div>
-            <div class="stat-content">
-              <h3 class="stat-value">TOP MENTORS</h3>
-              <p class="stat-label">Industry Mentors & Expert Judges</p>
+            <div>
+              <h3 class="font-display text-xl font-extrabold text-navy-950 tracking-tight mb-1">TOP MENTORS</h3>
+              <p class="text-sm text-ink-600">Industry Mentors &amp; Expert Judges</p>
             </div>
           </div>
 
           <!-- Metric 4 -->
-          <div class="stat-card glass-secondary reveal-on-scroll" style="--reveal-delay: 3;">
-            <div class="stat-icon-wrap glass-icon">
+          <div class="bg-white border border-navy-100 shadow-sm rounded-2xl p-7 flex flex-col gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 reveal-on-scroll" style="--reveal-delay: 3;">
+            <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
@@ -315,61 +348,61 @@
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
             </div>
-            <div class="stat-content">
-              <h3 class="stat-value">CERTIFICATES</h3>
-              <p class="stat-label">Official Certificate for All Participants</p>
+            <div>
+              <h3 class="font-display text-xl font-extrabold text-navy-950 tracking-tight mb-1">CERTIFICATES</h3>
+              <p class="text-sm text-ink-600">Official Certificate for All Participants</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Editorial Concept & Modular Grid (Glass Level 1) -->
-    <section class="section section-concept" id="about">
-      <div class="bg-glow-shift" style="left: 80%; top: 30%;"></div>
-      <div class="container">
+    <!-- ================================================================
+         ABOUT / CONCEPT GRID
+         ================================================================ -->
+    <section class="py-20 md:py-24 bg-white" id="about">
+      <div class="max-w-[1240px] mx-auto px-6">
         
-        <div class="section-header reveal-on-scroll" style="text-align: left; margin-bottom: 4rem;">
-          <div class="accent-line-expand"></div>
-          <div class="reveal-heading-wrap">
-            <h2 class="section-title-light reveal-heading">ABOUT HACKSETU</h2>
-          </div>
-          <p class="editorial-subtext reveal-card">Rooted in the Sanskrit concept of "Setu" (Bridge), our mission is connecting creative collegiate minds with industry realities. We build for impact.</p>
+        <div class="mb-12 reveal-on-scroll">
+          <div class="w-20 h-0.5 bg-gold-500 mb-5"></div>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-3">About HackSetu</h2>
+          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">Rooted in the Sanskrit concept of "Setu" (Bridge), our mission is connecting creative collegiate minds with industry realities. We build for impact.</p>
         </div>
 
-        <div class="concept-grid parallax-wrap">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-5">
           
-          <!-- Block 1: Philosophy & The Bridge Motif -->
-          <div class="concept-card concept-card-large glass-primary reveal-on-scroll" style="--reveal-delay: 0;">
-            <div class="concept-tag-row">
-              <span class="badge badge-blue-glass">CORE PHILOSOPHY</span>
-              <span class="concept-id">&lt;/&gt;</span>
+          <!-- Block 1: Philosophy (spans 2 rows on desktop) -->
+          <div class="lg:row-span-2 bg-white border border-navy-100 border-l-4 border-l-navy-700 shadow-sm rounded-2xl p-8 md:p-9 flex flex-col justify-between reveal-on-scroll" style="--reveal-delay: 0;">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="inline-flex items-center gap-1.5 bg-navy-100 text-navy-800 border border-navy-200 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide">CORE PHILOSOPHY</span>
+                <span class="font-mono font-bold text-navy-700 text-xl">&lt;/&gt;</span>
+              </div>
+              <h3 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 leading-tight tracking-tight mb-4">A Bridge Between Ideas and Impact</h3>
+              <p class="text-ink-600 text-base leading-relaxed mb-8">
+                HackSetu is not just another hackathon. Rooted in the Sanskrit concept of <em>"Setu"</em> (Bridge), our mission is connecting creative collegiate minds with industry realities. 
+                48 continuous hours of architecture, debugging, collaboration, and deployment.
+              </p>
             </div>
-            <h3 class="concept-title">A BRIDGE BETWEEN IDEAS AND IMPACT</h3>
-            <p class="concept-desc">
-              HackSetu is not just another hackathon. Rooted in the Sanskrit concept of <em>"Setu"</em> (Bridge), our mission is connecting creative collegiate minds with industry realities. 
-              48 continuous hours of architecture, debugging, collaboration, and deployment.
-            </p>
-
-            <div class="concept-pillars glass-secondary">
-              <div class="pillar-item">
-                <span class="pillar-label">IDEAS</span>
-                <span class="pillar-arrow">&rarr;</span>
-                <span class="pillar-label">PEOPLE</span>
-                <span class="pillar-arrow">&rarr;</span>
-                <span class="pillar-label">TECHNOLOGY</span>
-                <span class="pillar-arrow">&rarr;</span>
-                <span class="pillar-label highlight-yellow">IMPACT</span>
+            <div class="bg-navy-50 border border-navy-100 rounded-xl p-4">
+              <div class="flex items-center justify-between font-display font-extrabold text-sm tracking-wider text-navy-950 flex-wrap gap-2">
+                <span>IDEAS</span>
+                <span class="text-ink-400">&rarr;</span>
+                <span>PEOPLE</span>
+                <span class="text-ink-400">&rarr;</span>
+                <span>TECHNOLOGY</span>
+                <span class="text-ink-400">&rarr;</span>
+                <span class="bg-gold-500 text-navy-900 px-2.5 py-0.5 rounded">IMPACT</span>
               </div>
             </div>
           </div>
 
-          <!-- Block 2: Prize Pool Spotlight Card -->
-          <div class="concept-card concept-card-prize glass-primary reveal-on-scroll" id="prizes" style="--reveal-delay: 1;">
-            <div class="prize-badge-wrap">
-              <span class="badge badge-yellow">REWARDS</span>
+          <!-- Block 2: Prize Pool (Dark card) -->
+          <div class="bg-navy-900 rounded-2xl p-8 flex flex-col border-t-[3px] border-gold-500 reveal-on-scroll" id="prizes" style="--reveal-delay: 1;">
+            <div class="mb-3">
+              <span class="inline-flex items-center gap-1.5 bg-gold-400/20 text-gold-400 border border-gold-400/30 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide">REWARDS</span>
             </div>
-            <div class="prize-icon-display">
+            <div class="text-gold-400 mb-3">
               <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
                 <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
@@ -379,178 +412,174 @@
                 <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
               </svg>
             </div>
-            <h4 class="prize-headline">PRIZE POOL</h4>
-            <div class="prize-status">TO BE ANNOUNCED</div>
-            <p class="prize-subtext">Cash prizes, developer tool grants, exclusive internships, and sponsor tracks.</p>
-            <div class="prize-footer-tags">
-              <span>BUILD</span> &bull; <span>SOLVE</span> &bull; <span>LEARN</span> &bull; <span>GROW</span>
+            <h4 class="font-display text-base tracking-widest text-white/60 uppercase mb-1">PRIZE POOL</h4>
+            <div class="font-display text-2xl md:text-3xl font-extrabold text-gold-400 leading-tight mb-3">TO BE ANNOUNCED</div>
+            <p class="text-white/70 text-sm mb-5">Cash prizes, developer tool grants, exclusive internships, and sponsor tracks.</p>
+            <div class="font-mono text-xs font-bold text-white/50 tracking-wider border-t border-white/10 pt-3 mt-auto">
+              <span class="text-gold-400">BUILD</span> &bull; <span class="text-gold-400">SOLVE</span> &bull; <span class="text-gold-400">LEARN</span> &bull; <span class="text-gold-400">GROW</span>
             </div>
           </div>
 
-          <!-- Block 3: Registration Fee & Participation Details -->
-          <div class="concept-card concept-card-fee glass-primary reveal-on-scroll" style="--reveal-delay: 2;">
-            <div class="fee-badge-wrap">
-              <span class="badge badge-blue-glass">REGISTRATION</span>
+          <!-- Block 3: Registration Fee -->
+          <div class="bg-white border border-navy-100 border-t-[3px] border-t-navy-700 shadow-sm rounded-2xl p-8 flex flex-col reveal-on-scroll" style="--reveal-delay: 2;">
+            <div class="mb-3">
+              <span class="inline-flex items-center gap-1.5 bg-navy-100 text-navy-800 border border-navy-200 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide">REGISTRATION</span>
             </div>
-            <div class="fee-main">
-              <div class="fee-amount">&#8377;1,600</div>
-              <div class="fee-scope">PER TEAM</div>
+            <div class="flex items-baseline gap-2 mb-1">
+              <div class="font-display text-4xl md:text-5xl font-black text-navy-950 leading-none">&#8377;1,600</div>
+              <div class="font-display font-extrabold text-sm text-ink-600">PER TEAM</div>
             </div>
-            <div class="fee-detail">
-              <span class="fee-chip">MAX 4 MEMBERS / TEAM</span>
-              <p class="fee-text">Covers event access, overnight stay on-campus, mentorship, hackathon kit, and food.</p>
+            <div class="mb-5">
+              <span class="inline-block bg-gold-100 text-gold-700 border border-gold-400/30 text-xs font-extrabold px-2.5 py-0.5 rounded tracking-wide mb-2">MAX 4 MEMBERS / TEAM</span>
+              <p class="text-sm text-ink-600">Covers event access, overnight stay on-campus, mentorship, hackathon kit, and food.</p>
             </div>
-            <a href="#register" class="btn btn-accent btn-full">
+            <a href="#register" class="inline-flex items-center justify-center w-full bg-gold-400 text-navy-900 font-extrabold py-3 rounded-xl hover:bg-gold-500 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 mt-auto">
               PROCEED TO REGISTER &rarr;
             </a>
           </div>
 
-          <!-- Block 4: Motto & Graphic Callout -->
-          <div class="concept-card concept-card-motto glass-primary reveal-on-scroll" style="--reveal-delay: 3;">
-            <span class="motto-tag">ACC MISSION</span>
-            <blockquote class="motto-quote">
+          <!-- Block 4: Motto (full width, gold tint) -->
+          <div class="lg:col-span-2 bg-gold-100 border border-gold-400/20 rounded-2xl p-8 text-center flex flex-col items-center gap-2 reveal-on-scroll" style="--reveal-delay: 3;">
+            <span class="font-mono text-xs font-extrabold tracking-[0.12em] text-gold-700 uppercase">ACC MISSION</span>
+            <blockquote class="font-display text-2xl md:text-3xl font-black text-navy-950 tracking-tight">
               &ldquo;SAME STUDENTS, BIGGER SOLUTIONS.&rdquo;
             </blockquote>
-            <p class="motto-sub">Real Problems &bull; Real People &bull; Real Impact</p>
+            <p class="text-ink-600 text-base font-semibold">Real Problems &bull; Real People &bull; Real Impact</p>
           </div>
 
         </div>
-
       </div>
     </section>
 
-    <!-- Dedicated Semantic #venue Section -->
-    <section class="section section-venue" id="venue">
-      <div class="bg-glow-shift" style="left: 20%; top: 60%;"></div>
-      <div class="container">
+    <!-- ================================================================
+         VENUE SECTION
+         ================================================================ -->
+    <section class="py-20 md:py-24 bg-navy-50" id="venue">
+      <div class="max-w-[1240px] mx-auto px-6">
         
-        <div class="section-header reveal-on-scroll" style="text-align: left; margin-bottom: 4rem;">
-          <div class="accent-line-expand"></div>
-          <span class="badge badge-yellow reveal-card" style="margin-bottom: 1rem;">EVENT VENUE</span>
-          <div class="reveal-heading-wrap">
-            <h2 class="section-title-light reveal-heading">CAMPUS & LOCATION</h2>
-          </div>
-          <p class="editorial-subtext reveal-card">HackSetu 2.0 is an in-person, 48-hour continuous hackathon hosted at Amity University Madhya Pradesh. The venue is fully equipped for round-the-clock building.</p>
+        <div class="mb-12 reveal-on-scroll">
+          <div class="w-20 h-0.5 bg-gold-500 mb-5"></div>
+          <span class="inline-flex items-center gap-1.5 bg-gold-400 text-navy-900 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide mb-3">EVENT VENUE</span>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-3">Campus &amp; Location</h2>
+          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">HackSetu 2.0 is an in-person, 48-hour continuous hackathon hosted at Amity University Madhya Pradesh. The venue is fully equipped for round-the-clock building.</p>
         </div>
 
-        <div class="venue-grid parallax-wrap">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-5">
           
           <!-- Primary Venue Card -->
-          <div class="venue-primary-card glass-primary reveal-on-scroll" style="--reveal-delay: 0;">
+          <div class="bg-white border border-navy-100 border-l-4 border-l-gold-500 shadow-sm rounded-2xl p-8 md:p-9 flex flex-col justify-between reveal-on-scroll" style="--reveal-delay: 0;">
             <div>
-              <div class="venue-tag-strip">
-                <span class="badge badge-blue-glass">OFFLINE CAMPUS</span>
-                <span class="badge badge-yellow">24/7 OVERNIGHT ACCESS</span>
+              <div class="flex items-center gap-3 mb-5 flex-wrap">
+                <span class="inline-flex items-center bg-navy-100 text-navy-900 border border-navy-200 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide">OFFLINE CAMPUS</span>
+                <span class="inline-flex items-center bg-gold-400 text-navy-900 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide">24/7 OVERNIGHT ACCESS</span>
               </div>
-              <h3 class="venue-title">E-Block Seminar Hall, ASET</h3>
-              <p class="venue-address">
-                <strong>Amity University Madhya Pradesh</strong><br>
+              <h3 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-3">E-Block Seminar Hall, ASET</h3>
+              <p class="text-base text-ink-600 leading-relaxed mb-8">
+                <strong class="text-navy-950">Amity University Madhya Pradesh</strong><br>
                 Maharajpura Dang, Opposite Airport, Gwalior, Madhya Pradesh &ndash; 474005
               </p>
 
-              <div class="venue-features-list">
-                <div class="venue-feature-item">
-                  <span class="venue-feature-icon">
+              <!-- Venue Features 2x2 Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div class="flex items-start gap-3 bg-navy-50 border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+                  <span class="text-navy-700 flex-shrink-0 mt-0.5">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
                   </span>
-                  <div class="venue-feature-text">
-                    <h5>High-Speed Fiber WiFi</h5>
-                    <p>Dedicated hackathon gigabit LAN & WiFi nodes</p>
+                  <div>
+                    <h5 class="text-sm font-bold text-navy-950 mb-0.5">High-Speed Fiber WiFi</h5>
+                    <p class="text-[0.8125rem] text-ink-600 leading-snug">Dedicated hackathon gigabit LAN &amp; WiFi nodes</p>
                   </div>
                 </div>
-
-                <div class="venue-feature-item">
-                  <span class="venue-feature-icon">
+                <div class="flex items-start gap-3 bg-navy-50 border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+                  <span class="text-navy-700 flex-shrink-0 mt-0.5">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
                   </span>
-                  <div class="venue-feature-text">
-                    <h5>Food & Energy Drinks</h5>
-                    <p>All meals, midnight snacks & continuous coffee</p>
+                  <div>
+                    <h5 class="text-sm font-bold text-navy-950 mb-0.5">Food &amp; Energy Drinks</h5>
+                    <p class="text-[0.8125rem] text-ink-600 leading-snug">All meals, midnight snacks &amp; continuous coffee</p>
                   </div>
                 </div>
-
-                <div class="venue-feature-item">
-                  <span class="venue-feature-icon">
+                <div class="flex items-start gap-3 bg-navy-50 border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+                  <span class="text-navy-700 flex-shrink-0 mt-0.5">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg>
                   </span>
-                  <div class="venue-feature-text">
-                    <h5>Rest & Chill Zones</h5>
-                    <p>Dedicated air-conditioned rest halls for participants</p>
+                  <div>
+                    <h5 class="text-sm font-bold text-navy-950 mb-0.5">Rest &amp; Chill Zones</h5>
+                    <p class="text-[0.8125rem] text-ink-600 leading-snug">Dedicated air-conditioned rest halls for participants</p>
                   </div>
                 </div>
-
-                <div class="venue-feature-item">
-                  <span class="venue-feature-icon">
+                <div class="flex items-start gap-3 bg-navy-50 border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+                  <span class="text-navy-700 flex-shrink-0 mt-0.5">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                   </span>
-                  <div class="venue-feature-text">
-                    <h5>24/7 Campus Security</h5>
-                    <p>Strict gate pass and biometric security on-campus</p>
+                  <div>
+                    <h5 class="text-sm font-bold text-navy-950 mb-0.5">24/7 Campus Security</h5>
+                    <p class="text-[0.8125rem] text-ink-600 leading-snug">Strict gate pass and biometric security on-campus</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="venue-actions">
-              <a href="https://maps.google.com/?q=Amity+University+Madhya+Pradesh+Gwalior" target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+            <div class="flex gap-4 flex-wrap">
+              <a href="https://maps.google.com/?q=Amity+University+Madhya+Pradesh+Gwalior" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold-400 text-navy-900 font-extrabold px-6 py-3 rounded-xl hover:bg-gold-500 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150">
                 <span>OPEN IN GOOGLE MAPS</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </a>
-              <a href="#register" class="btn btn-glass">REGISTER TEAM</a>
+              <a href="#register" class="inline-flex items-center border-2 border-navy-900 text-navy-900 font-bold px-6 py-3 rounded-xl hover:bg-navy-900 hover:text-white transition-all duration-150">REGISTER TEAM</a>
             </div>
           </div>
 
-          <!-- Secondary Logistics Card -->
-          <div class="venue-info-card glass-primary reveal-on-scroll" style="--reveal-delay: 1;">
-            <h4>EVENT LOGISTICS</h4>
+          <!-- Logistics Card -->
+          <div class="bg-navy-50 border border-navy-100 rounded-2xl p-8 md:p-9 flex flex-col gap-5 border-t-[3px] border-t-navy-700 reveal-on-scroll" style="--reveal-delay: 1;">
+            <h4 class="font-display text-xl font-extrabold text-navy-950 tracking-tight">EVENT LOGISTICS</h4>
             
-            <div class="logistic-block">
-              <div class="logistic-label">ARRIVAL & CHECK-IN</div>
-              <div class="logistic-value">October 22, 2026 &bull; 08:30 AM IST (Gate No. 1)</div>
+            <div class="bg-white border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+              <div class="font-mono text-[0.72rem] font-extrabold tracking-wider text-gold-700 uppercase mb-1">ARRIVAL &amp; CHECK-IN</div>
+              <div class="text-sm text-ink-600">October 22, 2026 &bull; 08:30 AM IST (Gate No. 1)</div>
             </div>
 
-            <div class="logistic-block">
-              <div class="logistic-label">NEAREST TRANSIT</div>
-              <div class="logistic-value">Gwalior Airport (GWL): 3 mins &bull; Gwalior Junction (GWL): 20 mins</div>
+            <div class="bg-white border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+              <div class="font-mono text-[0.72rem] font-extrabold tracking-wider text-gold-700 uppercase mb-1">NEAREST TRANSIT</div>
+              <div class="text-sm text-ink-600">Gwalior Airport (GWL): 3 mins &bull; Gwalior Junction (GWL): 20 mins</div>
             </div>
 
-            <div class="logistic-block">
-              <div class="logistic-label">WHAT TO BRING</div>
-              <div class="logistic-value">Valid College ID, Laptops, Chargers, Extension Cords, Hardware Kits</div>
+            <div class="bg-white border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+              <div class="font-mono text-[0.72rem] font-extrabold tracking-wider text-gold-700 uppercase mb-1">WHAT TO BRING</div>
+              <div class="text-sm text-ink-600">Valid College ID, Laptops, Chargers, Extension Cords, Hardware Kits</div>
             </div>
 
-            <div class="logistic-block">
-              <div class="logistic-label">ACCOMMODATION</div>
-              <div class="logistic-value">Covered within the ₹1,600 team fee (Hostel & Hall rest facilities)</div>
+            <div class="bg-white border border-navy-100 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
+              <div class="font-mono text-[0.72rem] font-extrabold tracking-wider text-gold-700 uppercase mb-1">ACCOMMODATION</div>
+              <div class="text-sm text-ink-600">Covered within the ₹1,600 team fee (Hostel &amp; Hall rest facilities)</div>
             </div>
           </div>
 
         </div>
-
       </div>
     </section>
 
-    <!-- Call to Action Banner (#register Section) -->
-    <section class="section-cta section" id="register">
-      <div class="bg-glow-shift" style="background: radial-gradient(circle, rgba(250, 204, 21, 0.08) 0%, transparent 60%);"></div>
-      <div class="container">
-        <div class="cta-banner glass-primary reveal-on-scroll">
-          <div class="cta-content">
-            <span class="badge badge-yellow">NATIONAL LEVEL HACKATHON</span>
-            <h2 class="cta-title">READY TO BUILD THE FUTURE AT HACKSETU 2.0?</h2>
-            <p class="cta-desc">
+    <!-- ================================================================
+         CTA BANNER (#register)
+         ================================================================ -->
+    <section class="py-20 md:py-24 bg-navy-900" id="register">
+      <div class="max-w-[1240px] mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 border-l-4 border-gold-500 pl-8 md:pl-10 reveal-on-scroll">
+          <div class="max-w-[640px]">
+            <span class="inline-flex items-center gap-1.5 bg-gold-400/20 text-gold-400 border border-gold-400/30 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide mb-4">NATIONAL LEVEL HACKATHON</span>
+            <h2 class="font-display text-3xl md:text-4xl font-extrabold text-white leading-tight tracking-tight mb-3">READY TO BUILD THE FUTURE AT HACKSETU 2.0?</h2>
+            <p class="text-white/70 text-base leading-relaxed">
               Grab your team, refine your best ideas, and compete with 300+ sharpest collegiate developers across India.
             </p>
           </div>
-          <div class="cta-button-group">
-            <a href="https://amitycodingclub.github.io/hacksetu-register" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-large">
+          <div class="flex flex-col gap-3 flex-shrink-0 w-full lg:w-auto">
+            <a href="https://amitycodingclub.github.io/hacksetu-register" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-gold-400 text-navy-900 font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-gold-500 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all duration-150">
               <span>REGISTER NOW</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <a href="mailto:amitycodingclub@gmail.com" class="btn btn-glass btn-large">CONTACT ORGANIZERS</a>
+            <a href="mailto:amitycodingclub@gmail.com" class="inline-flex items-center justify-center border-2 border-white/30 text-white font-bold text-base px-8 py-3.5 rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-150">CONTACT ORGANIZERS</a>
           </div>
         </div>
       </div>
@@ -558,72 +587,74 @@
 
   </main>
 
-  <!-- Site Footer (Frosted Glass with Dual Logos) -->
-  <footer class="site-footer glass-footer">
-    <div class="container">
-      <div class="footer-grid reveal-on-scroll">
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer class="mt-auto bg-navy-950 border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-[1240px] mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10 reveal-on-scroll">
         
-        <!-- Brand / Identity Column with Dual Logos -->
-        <div class="footer-brand">
-          <div class="footer-logos-duo">
-            <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="footer-amity-logo">
-            <span class="footer-divider-line"></span>
-            <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0 Logo" class="footer-hacksetu-logo">
+        <!-- Brand Column -->
+        <div>
+          <div class="flex items-center gap-3.5 mb-5 flex-wrap">
+            <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="h-8 w-auto bg-white/95 p-1 rounded">
+            <span class="w-px h-[26px] bg-white/15"></span>
+            <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0 Logo" class="h-8 w-auto bg-white/95 p-1 px-2 rounded">
           </div>
-          <p>
+          <p class="text-white/70 text-[0.9375rem] leading-relaxed mb-5 max-w-[380px]">
             A national-level 48-hour hackathon bridging student potential with impactful tech solutions. Organized by Amity Coding Club (ACC), ASET, Amity University Madhya Pradesh.
           </p>
-          <div class="footer-socials">
-            <span class="social-label">Follow updates:</span>
-            <a href="https://instagram.com/amitycodingclub" target="_blank" rel="noopener noreferrer" class="social-link glass-chip" aria-label="Instagram">
+          <div class="flex items-center gap-3">
+            <span class="text-[0.8125rem] text-white/50 font-semibold">Follow updates:</span>
+            <a href="https://instagram.com/amitycodingclub" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center text-white border border-white/15 rounded-full hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500 hover:-translate-y-0.5 transition-all duration-150" aria-label="Instagram">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
-            <a href="https://linkedin.com/company/amitycodingclub" target="_blank" rel="noopener noreferrer" class="social-link glass-chip" aria-label="LinkedIn">
+            <a href="https://linkedin.com/company/amitycodingclub" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center text-white border border-white/15 rounded-full hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500 hover:-translate-y-0.5 transition-all duration-150" aria-label="LinkedIn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
             </a>
-            <a href="https://instagram.com/amitycodingclub" target="_blank" rel="noopener noreferrer" class="social-handle">@amitycodingclub</a>
+            <a href="https://instagram.com/amitycodingclub" target="_blank" rel="noopener noreferrer" class="font-mono text-[0.8125rem] text-gold-400 hover:text-gold-500 transition-colors duration-150">@amitycodingclub</a>
           </div>
         </div>
 
-        <!-- Links: Quick Nav -->
-        <div class="footer-col">
-          <h5>NAVIGATION</h5>
-          <ul class="footer-links">
-            <li><a href="#about">About HackSetu</a></li>
-            <li><a href="#highlights">Key Highlights</a></li>
-            <li><a href="#prizes">Prize Details</a></li>
-            <li><a href="#venue">Event Venue</a></li>
+        <!-- Navigation -->
+        <div>
+          <h5 class="font-display text-sm font-extrabold tracking-widest text-white uppercase mb-4">NAVIGATION</h5>
+          <ul class="list-none flex flex-col gap-2.5">
+            <li><a href="#about" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">About HackSetu</a></li>
+            <li><a href="#highlights" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Key Highlights</a></li>
+            <li><a href="#prizes" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Prize Details</a></li>
+            <li><a href="#venue" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Event Venue</a></li>
           </ul>
         </div>
 
-        <!-- Links: Venue & Host -->
-        <div class="footer-col">
-          <h5>HOST CAMPUS</h5>
-          <p class="footer-campus-info">
-            <strong>Amity University Madhya Pradesh</strong><br>
+        <!-- Host Campus -->
+        <div>
+          <h5 class="font-display text-sm font-extrabold tracking-widest text-white uppercase mb-4">HOST CAMPUS</h5>
+          <p class="text-white/70 text-sm leading-relaxed">
+            <strong class="text-white">Amity University Madhya Pradesh</strong><br>
             Maharajpura Dang, Opposite Airport,<br>
             Gwalior, Madhya Pradesh – 474005<br>
             E-Block Seminar Hall, ASET
           </p>
         </div>
 
-        <!-- Links: Quick Actions -->
-        <div class="footer-col">
-          <h5>GET INVOLVED</h5>
-          <ul class="footer-links">
-            <li><a href="#register">Team Registration</a></li>
-            <li><a href="https://maps.google.com/?q=Amity+University+Madhya+Pradesh+Gwalior" target="_blank" rel="noopener noreferrer">Campus Directions</a></li>
-            <li><a href="mailto:amitycodingclub@gmail.com">Sponsor The Hack</a></li>
-            <li><a href="tel:9589885077">Emergency Contact</a></li>
+        <!-- Get Involved -->
+        <div>
+          <h5 class="font-display text-sm font-extrabold tracking-widest text-white uppercase mb-4">GET INVOLVED</h5>
+          <ul class="list-none flex flex-col gap-2.5">
+            <li><a href="#register" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Team Registration</a></li>
+            <li><a href="https://maps.google.com/?q=Amity+University+Madhya+Pradesh+Gwalior" target="_blank" rel="noopener noreferrer" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Campus Directions</a></li>
+            <li><a href="mailto:amitycodingclub@gmail.com" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Sponsor The Hack</a></li>
+            <li><a href="tel:9589885077" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Emergency Contact</a></li>
           </ul>
         </div>
 
       </div>
 
       <!-- Bottom Bar -->
-      <div class="footer-bottom">
+      <div class="pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-white/50 text-sm gap-4">
         <p>&copy; 2026 HackSetu 2.0 &bull; Amity Coding Club (ACC), ASET, Amity University Madhya Pradesh. All rights reserved.</p>
-        <p class="footer-tagline">BUILD &bull; COLLABORATE &bull; INNOVATE</p>
+        <p class="font-mono text-[0.8125rem] font-bold text-gold-400 tracking-wider">BUILD &bull; COLLABORATE &bull; INNOVATE</p>
       </div>
     </div>
   </footer>

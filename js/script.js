@@ -1,5 +1,5 @@
 /**
- * HACKSETU 2.0 - Core Vanilla JavaScript
+ * HACKSETU 2.0 - Core Vanilla JavaScript (Light Mode Edition)
  * Zero dependencies: Real-time countdown lifecycle, accessible mobile drawer, scroll interactions
  */
 
@@ -11,7 +11,6 @@ function initHackSetu() {
   initHeaderScroll();
   initSmoothScroll();
   initActiveNav();
-  initEditorialEffects();
 }
 
 if (document.readyState === 'loading') {
@@ -31,7 +30,6 @@ function initCountdownTimer() {
   const minutesEl = document.getElementById('cdMinutes');
   const secondsEl = document.getElementById('cdSeconds');
   const countdownGrid = document.getElementById('countdownGrid');
-  const headerTitle = document.getElementById('countdownHeaderTitle');
   const countdownWrapper = document.getElementById('countdownWrapper');
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
@@ -44,17 +42,16 @@ function initCountdownTimer() {
     const distanceToStart = eventStart - now;
     const distanceToEnd = eventEnd - now;
 
-    // Case 1: Event is currently LIVE (Between start and end)
+    // Case 1: Event is currently LIVE
     if (distanceToStart <= 0 && distanceToEnd > 0) {
-      if (headerTitle) headerTitle.textContent = 'EVENT STATUS';
       if (countdownGrid) {
         countdownGrid.innerHTML = `
-          <div class="event-live-banner" style="width: 100%;">
-            <div class="live-badge-glow">
-              <span class="pulse-indicator"></span>
+          <div class="flex flex-col items-center gap-3 w-full py-4">
+            <div class="inline-flex items-center gap-2.5 bg-gold-400 text-navy-900 border border-gold-500 px-5 py-2 rounded-full font-display text-xl font-extrabold tracking-wider">
+              <span class="pulse-indicator pulse-indicator-gold"></span>
               HACKSETU 2.0 IS LIVE
             </div>
-            <p class="event-live-text">48-Hour Non-Stop Hackathon is currently in progress at E-Block Seminar Hall, AUMP.</p>
+            <p class="text-ink-600 text-base">48-Hour Non-Stop Hackathon is currently in progress at E-Block Seminar Hall, AUMP.</p>
           </div>
         `;
       }
@@ -63,14 +60,13 @@ function initCountdownTimer() {
 
     // Case 2: Event has concluded
     if (distanceToEnd <= 0) {
-      if (headerTitle) headerTitle.textContent = 'HACKSETU 2.0 CONCLUDED';
       if (countdownGrid) {
         countdownGrid.innerHTML = `
-          <div class="event-live-banner" style="width: 100%;">
-            <div class="live-badge-glow" style="background: rgba(59, 130, 246, 0.2); color: var(--blue-400); border-color: var(--blue-400);">
+          <div class="flex flex-col items-center gap-3 w-full py-4">
+            <div class="inline-flex items-center gap-2.5 bg-navy-100 text-navy-900 border border-navy-200 px-5 py-2 rounded-full font-display text-xl font-extrabold tracking-wider">
               EVENT CONCLUDED
             </div>
-            <p class="event-live-text">Thank you to all 75 national teams and partners who made HackSetu 2.0 extraordinary.</p>
+            <p class="text-ink-600 text-base">Thank you to all 75 national teams and partners who made HackSetu 2.0 extraordinary.</p>
           </div>
         `;
       }
@@ -146,7 +142,7 @@ function initMobileDrawer() {
 }
 
 /**
- * Sticky Header elevation shadow on scroll
+ * Sticky Header shadow on scroll
  */
 function initHeaderScroll() {
   const header = document.getElementById('header');
@@ -157,7 +153,11 @@ function initHeaderScroll() {
     const shouldScroll = window.scrollY > 12;
     if (shouldScroll !== isScrolled) {
       isScrolled = shouldScroll;
-      header.classList.toggle('scrolled', isScrolled);
+      if (isScrolled) {
+        header.classList.add('shadow-lg');
+      } else {
+        header.classList.remove('shadow-lg');
+      }
     }
   };
 
@@ -169,7 +169,7 @@ function initHeaderScroll() {
  */
 function initSmoothScroll() {
   const navLinks = document.querySelectorAll('a[href^="#"]');
-  const header = document.querySelector('.site-header');
+  const header = document.querySelector('header');
   const headerHeight = header ? header.offsetHeight : 76;
 
   navLinks.forEach(anchor => {
@@ -256,7 +256,6 @@ function initTypewriter() {
 /**
  * Minimal Scroll Reveal via IntersectionObserver
  * Subtly reveals major section cards, headings, and groups upon scrolling into view
- * Opacity (0 -> 1), slight vertical translation (18px -> 0), subtle blur reduction (3px -> 0)
  * Respects prefers-reduced-motion, provides immediate fallback if JS or observer is unavailable
  */
 function initScrollReveal() {
@@ -308,14 +307,12 @@ function initScrollReveal() {
 }
 
 /**
- * EFFECT 5: ACTIVE SECTION NAVIGATION
+ * ACTIVE SECTION NAVIGATION
  * Indicates which section of the page the visitor is currently viewing.
  * Uses IntersectionObserver, Vanilla JS, and the existing navigation structure.
- * Handles: About, Highlights, Prizes, Team, Venue, Register.
- * Smoothly transitions active state, supports upward & downward scrolling, and click navigation.
  */
 function initActiveNav() {
-  const targetSectionIds = ['highlights', 'about', 'prizes', 'team', 'venue', 'register'];
+  const targetSectionIds = ['highlights', 'about', 'prizes', 'venue', 'register'];
 
   // Query valid elements currently present in the DOM
   const trackedSections = [];
@@ -328,8 +325,8 @@ function initActiveNav() {
 
   if (!trackedSections.length) return;
 
-  const desktopLinks = document.querySelectorAll('.nav-links .nav-link, .header-cta-wrap .header-register-btn');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-links .mobile-nav-link, .mobile-drawer-footer a[href="#register"]');
+  const desktopLinks = document.querySelectorAll('.nav-link-custom, .header-register-btn');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-drawer a[href="#register"]');
   const allNavLinks = [...desktopLinks, ...mobileLinks];
 
   let currentActiveId = null;
@@ -345,15 +342,24 @@ function initActiveNav() {
       if (href && href === `#${activeId}`) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
+        // Update desktop nav link colors
+        if (link.classList.contains('nav-link-custom')) {
+          link.classList.remove('text-white/70');
+          link.classList.add('text-white');
+        }
       } else {
         link.classList.remove('active');
         link.removeAttribute('aria-current');
+        if (link.classList.contains('nav-link-custom')) {
+          link.classList.add('text-white/70');
+          link.classList.remove('text-white');
+        }
       }
     });
   }
 
   function getFocalLine() {
-    const header = document.querySelector('.site-header');
+    const header = document.querySelector('header');
     const headerHeight = header ? header.offsetHeight : 76;
     return headerHeight + 20; // Reading focal line ~96px from viewport top
   }
@@ -469,49 +475,3 @@ function initActiveNav() {
   // Run initial state calculation
   computeActiveSection();
 }
-
-/**
- * Editorial Scroll Effects
- * Adds subtle parallax, glow shifts, and heading reveals
- */
-function initEditorialEffects() {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
-
-  // Parallax Images and Glow shifts
-  const parallaxImages = document.querySelectorAll('.parallax-img');
-  const glowShifts = document.querySelectorAll('.bg-glow-shift');
-
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-
-    // Subtle parallax on images
-    parallaxImages.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      const imgCenter = rect.top + rect.height / 2;
-      const viewportCenter = window.innerHeight / 2;
-      const distance = imgCenter - viewportCenter;
-      
-      // Move slightly inverse to scroll
-      const yOffset = distance * -0.05; 
-      img.style.transform = `scale(1.1) translateY(${yOffset}px)`;
-    });
-
-    // Slow organic movement for background glows
-    glowShifts.forEach((glow, index) => {
-      const rect = glow.parentElement.getBoundingClientRect();
-      // Only animate if section is near viewport
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const offset = (scrollY * (0.02 + index * 0.01));
-        glow.style.transform = `translate(-50%, calc(-50% + ${offset}px))`;
-      }
-    });
-  };
-
-  if (parallaxImages.length > 0 || glowShifts.length > 0) {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial call
-    handleScroll();
-  }
-}
-

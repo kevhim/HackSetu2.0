@@ -1,0 +1,226 @@
+/* ==========================================================================
+   HackSetu 2.0 — Custom CSS (companion to Tailwind utilities)
+   Only styles that Tailwind CDN cannot express: animations, pseudo-elements,
+   complex keyframes, and the background grid texture.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Technical Background Grid Texture
+   ========================================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-color: #F4F8FE;
+  background-image:
+    linear-gradient(rgba(15, 42, 92, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 42, 92, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(244, 248, 254, 0) 0%, rgba(244, 248, 254, 0.5) 50%, #F4F8FE 100%),
+    radial-gradient(circle 900px at 50% -5%, rgba(15, 42, 92, 0.04), transparent 70%);
+  background-size:
+    48px 48px,
+    48px 48px,
+    100% 100%,
+    100% 100%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ==========================================================================
+   2. Typewriter Cursor Blink
+   ========================================================================== */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 0.95em;
+  background-color: #CA9A0C;
+  margin-left: 3px;
+  vertical-align: middle;
+  border-radius: 1px;
+  animation: typewriter-blink 0.9s infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ==========================================================================
+   3. Pulse Indicator (Announcement Bar / Live Badge)
+   ========================================================================== */
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #0A1B3D;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(10, 27, 61, 0.5);
+  animation: pulse-ring 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  flex-shrink: 0;
+}
+
+/* Gold pulse variant for live state */
+.pulse-indicator-gold {
+  background-color: #F5B914;
+  box-shadow: 0 0 0 0 rgba(245, 185, 20, 0.5);
+  animation: pulse-ring-gold 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(10, 27, 61, 0.5); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(10, 27, 61, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(10, 27, 61, 0); }
+}
+
+@keyframes pulse-ring-gold {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 185, 20, 0.5); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(245, 185, 20, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 185, 20, 0); }
+}
+
+/* ==========================================================================
+   4. Scroll Reveal (IntersectionObserver Based)
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.js-reveal-enabled .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(3px);
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--reveal-delay, 0) * 75ms);
+  will-change: opacity, transform, filter;
+}
+
+.js-reveal-enabled .reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ==========================================================================
+   5. Countdown Seconds Pulse
+   ========================================================================== */
+@keyframes seconds-tick {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.04); }
+  30% { transform: scale(1); }
+}
+
+.countdown-seconds-pulse {
+  animation: seconds-tick 1s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   6. Mobile Drawer Transitions
+   ========================================================================== */
+.mobile-drawer {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition:
+    opacity 200ms ease,
+    visibility 200ms ease,
+    transform 200ms ease;
+}
+
+.mobile-drawer.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   7. Nav Link Active Underline
+   ========================================================================== */
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #F5B914;
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 180ms ease;
+}
+
+.nav-link-custom:hover::after {
+  opacity: 0.65;
+  transform: scaleX(0.7);
+}
+
+.nav-link-custom.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Mobile nav active dot */
+.mobile-nav-link.active::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #F5B914;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   8. Hamburger Animation
+   ========================================================================== */
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   9. Accessibility: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .typewriter-cursor {
+    display: none !important;
+  }
+  .js-reveal-enabled .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   10. Focus Visible Rings
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #1D4ED8;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
