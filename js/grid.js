@@ -25,8 +25,8 @@
         z-index: -1;
         background-color: #F4F8FE;
         background-image:
-          linear-gradient(rgba(15, 42, 92, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(15, 42, 92, 0.04) 1px, transparent 1px);
+          linear-gradient(rgba(8, 20, 48, 0.09) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 20, 48, 0.09) 1px, transparent 1px);
         background-size: 48px 48px;
       }
     `;
@@ -42,9 +42,9 @@
 
   // ─── Config ───
   const GRID_SIZE = 48;                    // Grid cell size in px
-  const LINE_COLOR = 'rgba(15, 42, 92, 0.045)'; // Faint navy grid lines
-  const DOT_COLOR = 'rgba(15, 42, 92, 0.06)';   // Intersection dots
-  const DOT_RADIUS = 1.2;                 // Dot size at intersections
+  const LINE_COLOR = 'rgba(8, 20, 48, 0.095)'; // Thin, dark-toned subtle navy grid lines
+  const DOT_COLOR = 'rgba(8, 20, 48, 0.13)';   // Subtle intersection dots
+  const DOT_RADIUS = 0.9;                 // Crisp thin dot size at intersections
   const DISTORT_RADIUS = 200;             // Cursor influence radius in px
   const DISTORT_STRENGTH = 18;            // Max pixel displacement at center
   const SMOOTH_FACTOR = 0.08;             // Lerp speed for cursor tracking (lower = smoother)
@@ -126,7 +126,7 @@
 
     // Draw horizontal grid lines (smooth curves through distorted points)
     ctx.strokeStyle = LINE_COLOR;
-    ctx.lineWidth = 0.8;
+    ctx.lineWidth = 0.65;
 
     for (let r = 0; r < rows; r++) {
       ctx.beginPath();
