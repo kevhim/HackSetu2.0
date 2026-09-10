@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HACKSETU 2.0 | The Ultimate Coding Battle — Amity University</title>
-  <meta name="description" content="A National-Level 48-Hour Hackathon by Amity Coding Club (ACC) at Amity University Madhya Pradesh. 2-3 November 2026.">
+  <meta name="description" content="A National-Level 36-Hour Hackathon by Amity Coding Club (ACC) at Amity University Madhya Pradesh. 2-3 November 2026.">
   
   <!-- Modern Geometric Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,16 +62,52 @@
   <canvas id="gridCanvas" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: -1;"></canvas>
 
   <!-- ================================================================
-       ANNOUNCEMENT BAR
+       ANNOUNCEMENT BAR (Interactive Moving Ticker)
        ================================================================ -->
-  <aside class="bg-gold-400 border-b border-gold-500/30 py-2.5 text-sm relative z-[101]" aria-label="Announcement">
-    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between gap-4 flex-wrap">
-      <div class="flex items-center gap-3 flex-wrap">
-        <span class="pulse-indicator"></span>
-        <span class="bg-navy-900/10 text-navy-900 border border-navy-900/20 px-2.5 py-0.5 rounded text-xs font-extrabold tracking-wide">NATIONAL 48-HR HACKATHON</span>
-        <span class="text-navy-900/80">Registration open for colleges across India &bull; 2–3 November 2026</span>
+  <aside class="bg-gold-400 border-b border-gold-500/30 py-2.5 text-sm relative z-[101] overflow-hidden" aria-label="Live Announcement">
+    <div class="ticker-wrap select-none">
+      <div class="ticker-track flex items-center">
+        <!-- Loop Item 1 -->
+        <div class="flex items-center gap-6 px-6 shrink-0 text-navy-950 font-bold">
+          <span class="pulse-indicator"></span>
+          <span class="bg-navy-900/15 text-navy-900 border border-navy-900/25 px-2.5 py-0.5 rounded text-xs font-black tracking-wider uppercase">NATIONAL 36-HR HACKATHON</span>
+          <span class="font-extrabold text-navy-900">🏆 &#8377;1,03,000+ CASH PRIZE POOL</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>🥇 1ST: &#8377;51,000</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>🥈 2ND: &#8377;31,000</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>🥉 3RD: &#8377;21,000</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>📅 2–3 NOVEMBER 2026</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>👥 &#8377;1,200 / TEAM OF 4 (&#8377;300/MEMBER)</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>📍 E-BLOCK, AMITY UNIVERSITY GWALIOR</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <a href="#register" class="inline-flex items-center gap-1 font-black text-navy-950 underline hover:text-navy-800 transition-colors">REGISTER TEAM &rarr;</a>
+        </div>
+        <!-- Loop Item 2 (Identical for seamless loop) -->
+        <div class="flex items-center gap-6 px-6 shrink-0 text-navy-950 font-bold" aria-hidden="true">
+          <span class="pulse-indicator"></span>
+          <span class="bg-navy-900/15 text-navy-900 border border-navy-900/25 px-2.5 py-0.5 rounded text-xs font-black tracking-wider uppercase">NATIONAL 36-HR HACKATHON</span>
+          <span class="font-extrabold text-navy-900">🏆 &#8377;1,03,000+ CASH PRIZE POOL</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>🥇 1ST: &#8377;51,000</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>🥈 2ND: &#8377;31,000</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>🥉 3RD: &#8377;21,000</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>📅 2–3 NOVEMBER 2026</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>👥 &#8377;1,200 / TEAM OF 4 (&#8377;300/MEMBER)</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <span>📍 E-BLOCK, AMITY UNIVERSITY GWALIOR</span>
+          <span class="text-navy-900/30">&bull;</span>
+          <a href="#register" class="inline-flex items-center gap-1 font-black text-navy-950 underline hover:text-navy-800 transition-colors">REGISTER TEAM &rarr;</a>
+        </div>
       </div>
-      <a href="#register" class="text-navy-900 font-bold whitespace-nowrap hover:underline transition-all duration-150">Register Team &rarr;</a>
     </div>
   </aside>
 
@@ -157,22 +193,103 @@
           </div>
         </div>
 
-        <!-- Hero Center Showcase -->
-        <div class="w-full max-w-[960px] mb-10">
+        <!-- Hero Center Showcase with Logo & Surrounding Prize Pool -->
+        <div class="w-full max-w-[980px] mb-10 reveal-on-scroll" id="prizes">
           
           <!-- Tagline Pill -->
-          <div class="inline-flex items-center gap-2.5 bg-navy-900/5 border border-navy-900/10 text-navy-800 px-5 py-1.5 rounded-full text-[0.8125rem] font-extrabold tracking-wider uppercase mb-7 reveal-on-scroll">
+          <div class="inline-flex items-center gap-2.5 bg-navy-900/5 border border-navy-900/10 text-navy-800 px-5 py-1.5 rounded-full text-[0.8125rem] font-extrabold tracking-wider uppercase mb-6">
             <span class="w-[7px] h-[7px] bg-gold-500 rounded-full flex-shrink-0"></span>
-            A NATIONAL-LEVEL 48-HOUR HACKATHON
+            A NATIONAL-LEVEL 36-HOUR HACKATHON
           </div>
 
-          <!-- Official Emblem -->
-          <div class="w-full max-w-[580px] mx-auto bg-white p-5 md:p-6 rounded-2xl shadow-md border border-navy-100 mb-8 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-150 reveal-on-scroll">
-            <img src="assets/images/hacksetu-logo.png" alt="HACKSETU 2.0 - Code | Connect | Create A Better Tomorrow" class="w-full h-auto object-contain">
+          <!-- Master Prize Pool & Logo Showcase Card (Prize Pool Around Logo) -->
+          <div class="bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 rounded-3xl p-6 sm:p-8 md:p-9 border-2 border-gold-400/50 shadow-2xl relative overflow-hidden text-white mb-8">
+            
+            <!-- Ambient Glow Accents -->
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-gold-400/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+              
+              <!-- Top Row: Cash Rewards Badge and Total Pool -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 pb-5 border-b border-white/10 text-center sm:text-left">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-12 h-12 rounded-xl bg-gold-400 text-navy-950 flex items-center justify-center font-black shadow-md flex-shrink-0">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                      <path d="M4 22h16"></path>
+                      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                      <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="inline-flex items-center gap-1.5 bg-gold-400/20 text-gold-400 border border-gold-400/30 px-3 py-0.5 rounded-full text-[0.7rem] font-extrabold tracking-wider uppercase mb-1">
+                      OFFICIAL CASH AWARDS
+                    </div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">CASH PRIZE POOL</h2>
+                  </div>
+                </div>
+
+                <div class="flex flex-col items-center sm:items-end">
+                  <div class="font-display text-4xl sm:text-5xl font-black text-gold-400 leading-none tracking-tight">&#8377;1,03,000+</div>
+                  <span class="font-mono text-xs font-bold text-white/60 tracking-wider mt-1.5 uppercase">TOTAL PODIUM CASH POOL</span>
+                </div>
+              </div>
+
+              <!-- Main Center: Logo in Center Flanked by 2nd & 3rd Prizes, Crowned by 1st Prize -->
+              <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr_1fr] gap-4 items-center mb-6">
+                
+                <!-- 2nd Prize Card (Left) -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center flex flex-col items-center hover:bg-white/[0.08] hover:border-white/20 transition-all duration-150 order-2 lg:order-1">
+                  <div class="w-8 h-8 rounded-full bg-white/15 text-white font-black text-xs flex items-center justify-center mb-2">2ND</div>
+                  <span class="font-mono text-xs font-extrabold text-white/70 uppercase tracking-widest mb-1">RUNNER UP</span>
+                  <div class="font-display font-black text-3xl text-white leading-tight mb-2">&#8377;31,000</div>
+                  <p class="text-xs text-white/70">Runner-Up Trophy &bull; Cash Award &bull; Dev Tool Grants &bull; Certificate</p>
+                </div>
+
+                <!-- Center: Official Emblem (White Card Framed in Gold & Crowned by 1st Place) -->
+                <div class="order-1 lg:order-2 flex flex-col items-center">
+                  <!-- 1st Prize Champion Crown -->
+                  <div class="bg-gold-400 text-navy-950 font-black px-4 py-1 rounded-full text-xs tracking-wider uppercase shadow-md flex items-center gap-1.5 mb-3">
+                    <span>👑</span> 1ST PLACE CHAMPION &bull; &#8377;51,000
+                  </div>
+
+                  <!-- Logo Emblem Card -->
+                  <div class="w-full bg-white p-5 sm:p-6 rounded-2xl shadow-xl border-2 border-gold-400 hover:scale-[1.01] transition-transform duration-150">
+                    <img src="assets/images/hacksetu-logo.png" alt="HACKSETU 2.0 - Code | Connect | Create A Better Tomorrow" class="w-full h-auto object-contain max-h-[160px]">
+                  </div>
+
+                  <!-- 1st Place Subtitle -->
+                  <span class="text-xs text-gold-300 font-bold mt-2.5 tracking-wide text-center">
+                    Winner Trophy + Cash + Direct Mentorship + Internships
+                  </span>
+                </div>
+
+                <!-- 3rd Prize Card (Right) -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center flex flex-col items-center hover:bg-white/[0.08] hover:border-white/20 transition-all duration-150 order-3">
+                  <div class="w-8 h-8 rounded-full bg-white/15 text-white font-black text-xs flex items-center justify-center mb-2">3RD</div>
+                  <span class="font-mono text-xs font-extrabold text-white/70 uppercase tracking-widest mb-1">SECOND RUNNER UP</span>
+                  <div class="font-display font-black text-3xl text-white leading-tight mb-2">&#8377;21,000</div>
+                  <p class="text-xs text-white/70">Second Runner-Up Trophy &bull; Cash Award &bull; Cloud Credits &bull; Swag Kits</p>
+                </div>
+
+              </div>
+
+              <!-- Bottom Bar: Registration Fee & Perks -->
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10 text-xs text-white/70 font-medium">
+                <span class="flex items-center gap-1.5"><span class="text-gold-400 font-bold">&check;</span> Sponsor Track Grants</span>
+                <span class="flex items-center gap-1.5"><span class="text-gold-400 font-bold">&check;</span> Official Certificates for All Participants</span>
+                <span class="flex items-center gap-1.5"><span class="text-gold-400 font-bold">&check;</span> Full Accommodation &amp; Food Included</span>
+                <span class="inline-flex items-center gap-1 bg-gold-400 text-navy-950 px-3 py-0.5 rounded-full font-black">Only &#8377;1,200 / Team of 4</span>
+              </div>
+
+            </div>
           </div>
 
           <!-- Battle Subheadline with Typewriter -->
-          <div class="reveal-on-scroll">
+          <div>
             <h1 class="font-display text-2xl md:text-4xl font-extrabold tracking-wide uppercase text-navy-950 mb-3 leading-tight">
               <span>BUILD THE FUTURE OF </span>
               <span class="inline-flex items-center whitespace-nowrap relative" style="min-height: 1.25em; vertical-align: bottom;">
@@ -181,7 +298,7 @@
               </span>
             </h1>
             <div class="inline-flex items-center gap-3 bg-navy-50 border border-navy-100 px-5 py-2 rounded-full text-base font-semibold flex-wrap justify-center">
-              <span class="text-gold-700 font-extrabold">48 Hours Non-Stop</span>
+              <span class="text-gold-700 font-extrabold">36 Hours Non-Stop</span>
               <span class="text-navy-200 hidden sm:inline">|</span>
               <span class="text-ink-600">Code. Collaborate. Create. Build. Impact.</span>
             </div>
@@ -189,7 +306,7 @@
         </div>
 
         <!-- Event Metadata Chips -->
-        <div class="flex items-stretch justify-center gap-4 w-full max-w-[960px] mb-8 flex-wrap reveal-on-scroll">
+        <div class="flex items-stretch justify-center gap-4 w-full max-w-[960px] mb-10 flex-wrap reveal-on-scroll">
           
           <div class="flex-1 min-w-[260px] bg-white border border-navy-100 shadow-sm rounded-xl p-4 flex items-center gap-4 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
             <div class="w-11 h-11 rounded-lg bg-navy-100 text-navy-700 flex items-center justify-center flex-shrink-0">
@@ -293,7 +410,7 @@
         <div class="mb-12 reveal-on-scroll">
           <div class="w-20 h-0.5 bg-gold-500 mb-5"></div>
           <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-3">The Hackathon in Numbers</h2>
-          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">48 continuous hours of architecture, debugging, collaboration, and deployment for top talent across the nation.</p>
+          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">36 continuous hours of architecture, debugging, collaboration, and deployment for top talent across the nation.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -387,7 +504,7 @@
               <h3 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 leading-tight tracking-tight mb-4">A Bridge Between Ideas and Impact</h3>
               <p class="text-ink-600 text-base leading-relaxed mb-8">
                 HackSetu is not just another hackathon. Rooted in the Sanskrit concept of <em>"Setu"</em> (Bridge), our mission is connecting creative collegiate minds with industry realities. 
-                48 continuous hours of architecture, debugging, collaboration, and deployment.
+                36 continuous hours of architecture, debugging, collaboration, and deployment.
               </p>
             </div>
             <div class="bg-navy-50 border border-navy-100 rounded-xl p-4">
@@ -404,7 +521,7 @@
           </div>
 
           <!-- Block 2: Prize Pool (Dark card) -->
-          <div class="bg-navy-900 rounded-2xl p-7 md:p-8 flex flex-col border-t-[3px] border-gold-500 reveal-on-scroll" id="prizes" style="--reveal-delay: 1;">
+          <div class="bg-navy-900 rounded-2xl p-7 md:p-8 flex flex-col border-t-[3px] border-gold-500 reveal-on-scroll" id="about-rewards" style="--reveal-delay: 1;">
             <div class="flex items-center justify-between mb-3">
               <span class="inline-flex items-center gap-1.5 bg-gold-400/20 text-gold-400 border border-gold-400/30 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide">CASH REWARDS</span>
               <span class="font-mono text-xs font-extrabold text-gold-400 tracking-wider">&#8377;1,03,000+ POOL</span>
@@ -478,7 +595,7 @@
           <div class="w-20 h-0.5 bg-gold-500 mb-5"></div>
           <span class="inline-flex items-center gap-1.5 bg-gold-400 text-navy-900 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide mb-3">EVENT VENUE</span>
           <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-3">Campus &amp; Location</h2>
-          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">HackSetu 2.0 is an in-person, 48-hour continuous hackathon hosted at Amity University Madhya Pradesh. The venue is fully equipped for round-the-clock building.</p>
+          <p class="text-ink-600 text-lg max-w-[650px] leading-relaxed">HackSetu 2.0 is an in-person, 36-hour continuous hackathon hosted at Amity University Madhya Pradesh. The venue is fully equipped for round-the-clock building.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-5">
@@ -619,7 +736,7 @@
             <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0 Logo" class="h-8 w-auto bg-white/95 p-1 px-2 rounded">
           </div>
           <p class="text-white/70 text-[0.9375rem] leading-relaxed mb-5 max-w-[380px]">
-            A national-level 48-hour hackathon bridging student potential with impactful tech solutions. Organized by Amity Coding Club (ACC), ASET, Amity University Madhya Pradesh.
+            A national-level 36-hour hackathon bridging student potential with impactful tech solutions. Organized by Amity Coding Club (ACC), ASET, Amity University Madhya Pradesh.
           </p>
           <div class="flex items-center gap-3">
             <span class="text-[0.8125rem] text-white/50 font-semibold">Follow updates:</span>

@@ -21,6 +21,45 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
+/* ==========================================================================
+   Announcement Banner Infinite Marquee Ticker
+   ========================================================================== */
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-slide 34s linear infinite;
+  will-change: transform;
+}
+
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
 
 /* ==========================================================================
    2. Typewriter Cursor Blink

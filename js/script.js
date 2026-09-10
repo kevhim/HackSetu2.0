@@ -51,7 +51,7 @@ function initCountdownTimer() {
               <span class="pulse-indicator pulse-indicator-gold"></span>
               HACKSETU 2.0 IS LIVE
             </div>
-            <p class="text-ink-600 text-base">48-Hour Non-Stop Hackathon is currently in progress at E-Block Seminar Hall, AUMP.</p>
+            <p class="text-ink-600 text-base">36-Hour Non-Stop Hackathon is currently in progress at E-Block Seminar Hall, AUMP.</p>
           </div>
         `;
       }
