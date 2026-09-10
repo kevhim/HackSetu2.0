@@ -50,10 +50,16 @@
     }
   </script>
   
-  <!-- Custom CSS (animations, grid texture, scroll-reveal) -->
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  
+  <!-- Custom CSS (animations, scroll-reveal) -->
   <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="font-body bg-navy-50 text-ink-900 antialiased min-h-screen flex flex-col overflow-x-hidden relative">
+
+  <!-- Interactive Distortion Grid Background -->
+  <canvas id="gridCanvas" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: -1;"></canvas>
 
   <!-- ================================================================
        ANNOUNCEMENT BAR
@@ -659,6 +665,7 @@
     </div>
   </footer>
 
+  <script src="js/grid.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

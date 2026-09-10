@@ -165,13 +165,33 @@ function initHeaderScroll() {
 }
 
 /**
- * Smooth scrolling with sticky navbar offset compensation
+ * Smooth scrolling powered by Lenis with sticky navbar offset compensation
  */
 function initSmoothScroll() {
-  const navLinks = document.querySelectorAll('a[href^="#"]');
   const header = document.querySelector('header');
   const headerHeight = header ? header.offsetHeight : 76;
 
+  // Initialize Lenis smooth scroll if loaded and user hasn't requested reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lenisInstance = null;
+
+  if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion) {
+    lenisInstance = new window.Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+    });
+
+    function raf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    window.lenis = lenisInstance;
+  }
+
+  const navLinks = document.querySelectorAll('a[href^="#"]');
   navLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -180,13 +200,19 @@ function initSmoothScroll() {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerHeight - 16;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        if (lenisInstance) {
+          lenisInstance.scrollTo(targetElement, {
+            offset: -headerHeight - 16,
+            duration: 1.2
+          });
+        } else {
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight - 16;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });
