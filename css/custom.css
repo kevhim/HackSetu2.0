@@ -21,6 +21,20 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
+/* Hide native scrollbar while preserving full scrolling functionality */
+html,
+body {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and legacy Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Chromium, Edge */
+  width: 0;
+  height: 0;
+}
+
 /* ==========================================================================
    Announcement Banner Infinite Marquee Ticker
    ========================================================================== */
