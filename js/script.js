@@ -21,8 +21,8 @@ if (document.readyState === 'loading') {
 
 /**
  * Real-Time Countdown Timer with Full Lifecycle State
- * Target: HackSetu 2.0 Opening Ceremony (October 22, 2026, 09:00:00 IST)
- * Event End: October 24, 2026, 17:00:00 IST
+ * Target: HackSetu 2.0 Opening Ceremony (November 2, 2026, 09:00:00 IST)
+ * Event End: November 3, 2026, 17:00:00 IST
  */
 function initCountdownTimer() {
   const daysEl = document.getElementById('cdDays');
@@ -34,8 +34,8 @@ function initCountdownTimer() {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  const eventStart = new Date('2026-10-22T09:00:00+05:30').getTime();
-  const eventEnd = new Date('2026-10-24T17:00:00+05:30').getTime();
+  const eventStart = new Date('2026-11-02T09:00:00+05:30').getTime();
+  const eventEnd = new Date('2026-11-03T17:00:00+05:30').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();

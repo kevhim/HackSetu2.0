@@ -27,7 +27,7 @@ Rooted in the Sanskrit concept of *"Setu"* (Bridge), HackSetu bridges creative s
 
 ## Event Details
 
-- **Dates**: October 22 – 24, 2026 (48 Hours Non-Stop)
+- **Dates**: November 2 – 3, 2026 (48 Hours Non-Stop)
 - **Venue**: E-Block Seminar Hall, ASET, Amity University Madhya Pradesh, Maharajpura Dang, Gwalior – 474005
 - **Team Size**: Team of 4 members
 - **Fee**: ₹1,200 per team (₹300/member, includes food, midnight snacks, 24/7 campus access, accommodation, and event kits)
