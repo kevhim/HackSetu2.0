@@ -7,7 +7,7 @@
 
 ## Overview
 
-HackSetu 2.0 is a national-level collegiate hackathon bringing together over 75 teams (~300 participants) from institutions across India for 36 hours of continuous building, architecture, mentorship, and deployment.
+HackSetu 2.0 is a national-level collegiate hackathon bringing together over 200 teams (~800 participants) from institutions across India for 36 hours of continuous building, architecture, mentorship, and deployment.
 
 Rooted in the Sanskrit concept of *"Setu"* (Bridge), HackSetu bridges creative student minds with industry realities.
 

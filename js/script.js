@@ -66,7 +66,7 @@ function initCountdownTimer() {
             <div class="inline-flex items-center gap-2.5 bg-navy-100 text-navy-900 border border-navy-200 px-5 py-2 rounded-full font-display text-xl font-extrabold tracking-wider">
               EVENT CONCLUDED
             </div>
-            <p class="text-ink-600 text-base">Thank you to all 75 national teams and partners who made HackSetu 2.0 extraordinary.</p>
+            <p class="text-ink-600 text-base">Thank you to all 200 national teams and partners who made HackSetu 2.0 extraordinary.</p>
           </div>
         `;
       }
