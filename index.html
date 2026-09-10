@@ -105,24 +105,29 @@
   <header class="sticky top-0 z-[100] bg-navy-900 border-b border-white/10 transition-shadow duration-300" id="header">
     <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between h-[76px]">
       
-      <!-- Co-Branded Dual Logo Lockup -->
-      <div class="flex items-center gap-3.5">
-        <a href="https://amity.edu/gwalior" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white/95 p-1.5 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" title="Amity University Madhya Pradesh">
-          <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="h-[30px] w-auto object-contain">
+      <!-- Co-Branded Tri-Logo Lockup (Amity + HackSetu 2.0 + ACC) -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="https://amity.edu/gwalior" target="_blank" rel="noopener noreferrer" class="flex items-center bg-white/95 p-1 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" title="Amity University Madhya Pradesh">
+          <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="h-[28px] sm:h-[30px] w-auto object-contain">
         </a>
-        <span class="w-px h-[26px] bg-white/20" aria-hidden="true"></span>
-        <a href="index.html" class="flex items-center bg-white/95 py-1 px-3 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" aria-label="HackSetu 2.0 Home">
-          <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0" class="h-[32px] w-auto object-contain">
+        <span class="w-px h-[24px] bg-white/20" aria-hidden="true"></span>
+        <a href="index.html" class="flex items-center bg-white/95 py-1 px-2.5 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" aria-label="HackSetu 2.0 Home">
+          <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0" class="h-[28px] sm:h-[30px] w-auto object-contain">
         </a>
+        <span class="w-px h-[24px] bg-white/20" aria-hidden="true"></span>
+        <div class="flex items-center bg-white/95 p-1 rounded-lg border border-white/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150" title="Amity Coding Club (ACC)">
+          <img src="assets/images/acc-logo.png" alt="Amity Coding Club (ACC)" class="h-[28px] sm:h-[30px] w-auto object-contain">
+        </div>
       </div>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:block" aria-label="Primary Navigation">
-        <ul class="flex items-center gap-7 list-none">
+        <ul class="flex items-center gap-6 lg:gap-7 list-none">
           <li><a href="#about" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">About</a></li>
           <li><a href="#highlights" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Highlights</a></li>
           <li><a href="#prizes" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Prizes</a></li>
           <li><a href="#venue" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Venue</a></li>
+          <li><a href="#contact" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/70 hover:text-white py-1.5 inline-block transition-colors duration-150">Doubts</a></li>
         </ul>
       </nav>
 
@@ -151,6 +156,7 @@
         <li><a href="#highlights" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Highlights</a></li>
         <li><a href="#prizes" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Prizes</a></li>
         <li><a href="#venue" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Venue</a></li>
+        <li><a href="#contact" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Doubts &amp; Queries</a></li>
       </ul>
       <div>
         <a href="#register" class="inline-flex items-center justify-center w-full bg-gold-400 text-navy-900 font-extrabold py-3 rounded-xl hover:bg-gold-500 transition-colors duration-150">REGISTER NOW</a>
@@ -646,6 +652,95 @@
     </section>
 
     <!-- ================================================================
+         QUERIES & DOUBTS SECTION (#contact)
+         ================================================================ -->
+    <section class="py-16 md:py-20 bg-navy-50/70 border-t border-navy-100" id="contact">
+      <div class="max-w-[1240px] mx-auto px-6">
+        
+        <!-- Section Header -->
+        <div class="mb-10 text-center max-w-[650px] mx-auto reveal-on-scroll">
+          <div class="w-16 h-0.5 bg-gold-500 mx-auto mb-4"></div>
+          <span class="inline-flex items-center gap-1.5 bg-gold-400 text-navy-900 px-3.5 py-1 rounded-full text-[0.8125rem] font-extrabold tracking-wide mb-3">GET IN TOUCH</span>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy-950 tracking-tight mb-2">For Queries / Doubts</h2>
+          <p class="text-ink-600 text-base leading-relaxed">Reach out to our student or faculty coordinators for any assistance regarding registration, tracks, accommodation, or venue guidelines.</p>
+        </div>
+
+        <!-- 2-Column Compact Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[880px] mx-auto">
+          
+          <!-- Student Coordinators Card -->
+          <div class="bg-white border border-navy-100 shadow-sm rounded-2xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-150 reveal-on-scroll" style="--reveal-delay: 0;">
+            <div class="flex items-center gap-3 mb-4 pb-3 border-b border-navy-100/80">
+              <div class="w-10 h-10 rounded-xl bg-navy-100 text-navy-800 flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="11" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div>
+                <span class="font-mono text-xs font-bold text-gold-700 uppercase tracking-wider block">CONTACT DIRECTLY</span>
+                <h3 class="font-display text-lg font-extrabold text-navy-950">Student Coordinators</h3>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-navy-50/70 border border-navy-100/60">
+                <span class="font-semibold text-navy-950 text-sm">Jaideep Kamthan</span>
+                <a href="tel:+918085562034" class="font-mono text-xs sm:text-sm font-bold text-gold-700 hover:text-navy-900 transition-colors flex items-center gap-1.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  +91 8085562034
+                </a>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-xl bg-navy-50/70 border border-navy-100/60">
+                <span class="font-semibold text-navy-950 text-sm">Yash Sharma</span>
+                <a href="tel:+919589885077" class="font-mono text-xs sm:text-sm font-bold text-gold-700 hover:text-navy-900 transition-colors flex items-center gap-1.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  +91 95898 85077
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Faculty Coordinators Card -->
+          <div class="bg-white border border-navy-100 shadow-sm rounded-2xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-150 reveal-on-scroll" style="--reveal-delay: 1;">
+            <div class="flex items-center gap-3 mb-4 pb-3 border-b border-navy-100/80">
+              <div class="w-10 h-10 rounded-xl bg-navy-100 text-navy-800 flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </div>
+              <div>
+                <span class="font-mono text-xs font-bold text-gold-700 uppercase tracking-wider block">EVENT LEADERSHIP</span>
+                <h3 class="font-display text-lg font-extrabold text-navy-950">Faculty Coordinators</h3>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-navy-50/70 border border-navy-100/60">
+                <span class="font-semibold text-navy-950 text-sm">Dr. Samta Jain Goyal</span>
+                <span class="font-mono text-xs text-ink-600 bg-white px-2.5 py-1 rounded border border-navy-100">Faculty Coordinator</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-xl bg-navy-50/70 border border-navy-100/60">
+                <span class="font-semibold text-navy-950 text-sm">Dr. Nistha Parashar</span>
+                <span class="font-mono text-xs text-ink-600 bg-white px-2.5 py-1 rounded border border-navy-100">Faculty Coordinator</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
          CTA BANNER (#register)
          ================================================================ -->
     <section class="py-20 md:py-24 bg-navy-900" id="register">
@@ -666,7 +761,7 @@
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <a href="mailto:amitycodingclub@gmail.com" class="inline-flex items-center justify-center border-2 border-white/30 text-white font-bold text-base px-8 py-3.5 rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-150">CONTACT ORGANIZERS</a>
+            <a href="#contact" class="inline-flex items-center justify-center border-2 border-white/30 text-white font-bold text-base px-8 py-3.5 rounded-xl hover:bg-white/10 hover:border-white/50 transition-all duration-150">FOR QUERIES / DOUBTS</a>
           </div>
         </div>
       </div>
@@ -683,10 +778,12 @@
         
         <!-- Brand Column -->
         <div>
-          <div class="flex items-center gap-3.5 mb-5 flex-wrap">
+          <div class="flex items-center gap-3 mb-5 flex-wrap">
             <img src="assets/images/amity-logo.png" alt="Amity University Madhya Pradesh" class="h-8 w-auto bg-white/95 p-1 rounded">
-            <span class="w-px h-[26px] bg-white/15"></span>
+            <span class="w-px h-[24px] bg-white/15"></span>
             <img src="assets/images/hacksetu-logo.png" alt="HackSetu 2.0 Logo" class="h-8 w-auto bg-white/95 p-1 px-2 rounded">
+            <span class="w-px h-[24px] bg-white/15"></span>
+            <img src="assets/images/acc-logo.png" alt="Amity Coding Club Logo" class="h-8 w-auto bg-white/95 p-1 rounded">
           </div>
           <p class="text-white/70 text-[0.9375rem] leading-relaxed mb-5 max-w-[380px]">
             A national-level 36-hour hackathon bridging student potential with impactful tech solutions. Organized by Amity Coding Club (ACC), ASET, Amity University Madhya Pradesh.
@@ -711,6 +808,7 @@
             <li><a href="#highlights" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Key Highlights</a></li>
             <li><a href="#prizes" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Prize Details</a></li>
             <li><a href="#venue" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Event Venue</a></li>
+            <li><a href="#contact" class="text-white/70 text-[0.9375rem] hover:text-gold-400 hover:translate-x-0.5 inline-block transition-all duration-150">Queries &amp; Doubts</a></li>
           </ul>
         </div>
 
