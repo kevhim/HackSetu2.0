@@ -25,8 +25,8 @@
         z-index: -1;
         background-color: #F4F8FE;
         background-image:
-          linear-gradient(rgba(8, 20, 48, 0.14) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(8, 20, 48, 0.14) 1px, transparent 1px);
+          linear-gradient(rgba(15, 38, 76, 0.18) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(15, 38, 76, 0.18) 1px, transparent 1px);
         background-size: 48px 48px;
       }
     `;
@@ -42,8 +42,8 @@
 
   // ─── Config ───
   const GRID_SIZE = 48;                    // Grid cell size in px
-  const LINE_COLOR = 'rgba(8, 20, 48, 0.14)'; // Slightly darker navy grid lines
-  const DOT_COLOR = 'rgba(8, 20, 48, 0.18)';   // Visible intersection dots
+  const LINE_COLOR = 'rgba(15, 38, 76, 0.18)'; // Subtle blue-grey technical grid lines
+  const DOT_COLOR = 'rgba(15, 38, 76, 0.22)';   // Low-contrast intersection dots
   const DOT_RADIUS = 1.0;                 // Dot size at intersections
   const DISTORT_RADIUS = 200;             // Cursor influence radius in px
   const DISTORT_STRENGTH = 18;            // Max pixel displacement at center
