@@ -506,9 +506,25 @@ function initActiveNav() {
 }
 
 /**
+ * =============================================================================
+ * AMITY REGISTRATION CONFIGURATION
+ * Official Amity registration server endpoints.
+ * When Amity University provides dedicated registration portal URLs,
+ * update the values below.
+ * =============================================================================
+ */
+const AMITY_REGISTRATION_CONFIG = {
+  // Amity official registration destination for School Teams (Classes 9–12)
+  schoolUrl: 'https://amity.edu/gwalior',
+  // Amity official registration destination for College Teams (UG / PG)
+  collegeUrl: 'https://amity.edu/gwalior',
+};
+
+/**
  * Registration Selection Modal (School vs College)
+ * Hands users off to the official Amity registration server.
  * Handles smooth opening/closing, focus management, ESC dismissal,
- * backdrop click, body scroll lock, and category navigation.
+ * backdrop click, and body scroll lock.
  */
 function initRegistrationModal() {
   const modal = document.getElementById('registrationModal');
@@ -516,8 +532,18 @@ function initRegistrationModal() {
   const backdrop = document.getElementById('registrationModalBackdrop');
   const closeBtn = document.getElementById('closeRegModalBtn');
   const triggers = document.querySelectorAll('.js-reg-modal-trigger');
+  const schoolOption = document.getElementById('schoolTeamOption');
+  const collegeOption = document.getElementById('collegeTeamOption');
 
   if (!modal || !panel) return;
+
+  // Initialize external Amity URLs from configuration
+  if (schoolOption && AMITY_REGISTRATION_CONFIG.schoolUrl) {
+    schoolOption.href = AMITY_REGISTRATION_CONFIG.schoolUrl;
+  }
+  if (collegeOption && AMITY_REGISTRATION_CONFIG.collegeUrl) {
+    collegeOption.href = AMITY_REGISTRATION_CONFIG.collegeUrl;
+  }
 
   let lastActiveElement = null;
 
@@ -623,37 +649,14 @@ function initRegistrationModal() {
     }
   });
 
-  // Handle clicking an option card inside the modal
-  const optionLinks = modal.querySelectorAll('.reg-option-card');
-  optionLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      closeModal();
-
-      if (href && href.startsWith('#')) {
-        const targetElement = document.querySelector(href);
-        if (targetElement) {
-          e.preventDefault();
-          const header = document.querySelector('header');
-          const headerHeight = header ? header.offsetHeight : 76;
-          setTimeout(() => {
-            if (window.lenis) {
-              window.lenis.scrollTo(targetElement, {
-                offset: -headerHeight - 16,
-                duration: 1.2
-              });
-            } else {
-              const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-              const offsetPosition = elementPosition - headerHeight - 16;
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }, 150);
-        }
-      }
-    });
+  // Auto-dismiss modal cleanly when user clicks either Amity registration destination
+  [schoolOption, collegeOption].forEach(option => {
+    if (option) {
+      option.addEventListener('click', () => {
+        setTimeout(closeModal, 150);
+      });
+    }
   });
 }
+
 
