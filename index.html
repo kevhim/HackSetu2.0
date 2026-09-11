@@ -122,12 +122,20 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:block" aria-label="Primary Navigation">
-        <ul class="flex items-center gap-6 lg:gap-8 list-none">
+        <ul class="flex items-center gap-4 lg:gap-6 xl:gap-7 list-none">
           <li><a href="#about" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/80 hover:text-white py-1.5 inline-block transition-colors duration-150">About</a></li>
           <li><a href="#highlights" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/80 hover:text-white py-1.5 inline-block transition-colors duration-150">Highlights</a></li>
           <li><a href="#prizes" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/80 hover:text-white py-1.5 inline-block transition-colors duration-150">Prizes</a></li>
           <li><a href="#venue" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/80 hover:text-white py-1.5 inline-block transition-colors duration-150">Venue</a></li>
           <li><a href="#contact" class="nav-link-custom relative text-[0.9375rem] font-semibold text-white/80 hover:text-white py-1.5 inline-block transition-colors duration-150">Doubts</a></li>
+          <li>
+            <button type="button" id="navTracksBtn" class="nav-link-custom group relative flex flex-col items-center justify-center py-1 text-center cursor-pointer focus-visible:outline-none" aria-label="Tracks: Problem Statement will be released soon">
+              <span class="text-[0.9375rem] font-semibold text-white/80 group-hover:text-white transition-colors duration-150 leading-tight">Tracks</span>
+              <span class="text-[0.58rem] lg:text-[0.625rem] text-gold-400 font-mono tracking-tight leading-tight group-hover:text-gold-300 transition-colors duration-150 mt-0.5 whitespace-nowrap">
+                (PS &mdash; Problem Statement will be released soon)
+              </span>
+            </button>
+          </li>
         </ul>
       </nav>
 
@@ -157,6 +165,17 @@
         <li><a href="#prizes" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Prizes</a></li>
         <li><a href="#venue" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Venue</a></li>
         <li><a href="#contact" class="mobile-nav-link text-lg font-semibold text-white/70 flex items-center justify-between py-2 border-b border-white/10 hover:text-white hover:border-gold-500/60 transition-all duration-150">Doubts &amp; Queries</a></li>
+        <li>
+          <button type="button" id="mobileTracksBtn" class="mobile-nav-link w-full text-left py-2 border-b border-white/10 hover:border-gold-500/60 transition-all duration-150 flex flex-col items-start cursor-pointer">
+            <div class="flex items-center justify-between w-full">
+              <span class="text-lg font-semibold text-white/70 hover:text-white">Tracks</span>
+              <span class="text-[0.6875rem] font-mono font-bold text-gold-400 bg-gold-400/10 border border-gold-400/30 px-2 py-0.5 rounded">SOON</span>
+            </div>
+            <span class="text-xs text-gold-400/90 font-mono mt-0.5">
+              (PS &mdash; Problem Statement will be released soon)
+            </span>
+          </button>
+        </li>
       </ul>
       <div>
         <button type="button" class="js-reg-modal-trigger inline-flex items-center justify-center w-full bg-gold-400 text-navy-900 font-extrabold py-3 rounded-xl hover:bg-gold-500 transition-colors duration-150 cursor-pointer" aria-haspopup="dialog">REGISTER NOW</button>
@@ -811,7 +830,7 @@
 
             <div class="pt-2">
               <a href="https://maps.google.com/?q=Amity+University+Madhya+Pradesh+Gwalior" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold-400 text-navy-950 font-black text-sm sm:text-base px-7 py-3.5 rounded-xl hover:bg-gold-500 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 transition-all duration-150">
-                <span>MORE INFORMATION</span>
+                <span>MAPS</span>
                 <span class="text-base font-black">&rarr;</span>
               </a>
             </div>
@@ -1113,7 +1132,6 @@
               <span class="text-xs sm:text-[0.8125rem] font-extrabold text-navy-950 group-hover:text-navy-700 flex items-center gap-1">
                 CONTINUE <span class="text-gold-600 group-hover:translate-x-1 transition-transform">&rarr;</span>
               </span>
-              <span class="text-[0.7rem] font-semibold text-ink-400 uppercase tracking-wider">Amity Portal</span>
             </div>
           </a>
 
@@ -1139,7 +1157,6 @@
               <span class="text-xs sm:text-[0.8125rem] font-extrabold text-navy-950 group-hover:text-gold-700 flex items-center gap-1">
                 CONTINUE <span class="text-gold-600 group-hover:translate-x-1 transition-transform">&rarr;</span>
               </span>
-              <span class="text-[0.7rem] font-semibold text-ink-400 uppercase tracking-wider">Amity Portal</span>
             </div>
           </a>
         </div>

@@ -12,6 +12,7 @@ function initHackSetu() {
   initSmoothScroll();
   initActiveNav();
   initRegistrationModal();
+  initTracksNav();
 }
 
 if (document.readyState === 'loading') {
@@ -656,6 +657,85 @@ function initRegistrationModal() {
         setTimeout(closeModal, 150);
       });
     }
+  });
+}
+
+/**
+ * =============================================================================
+ * TRACKS & PROBLEM STATEMENT CONFIGURATION
+ * When the official Tracks and Problem Statement portal is released,
+ * update this URL (e.g. 'https://tracks.hacksetu.in' or dedicated route).
+ * If null or empty, clicking displays the release notification.
+ * =============================================================================
+ */
+const TRACKS_CONFIG = {
+  url: null, // Replace with live URL when PS is released
+  message: 'Problem Statement will be released soon.',
+};
+
+/**
+ * Tracks & Problem Statement Navigation Handler
+ * Provides an extensible link destination that alerts users that
+ * the official Problem Statement is releasing soon without navigating to broken routes.
+ */
+function initTracksNav() {
+  const tracksButtons = [
+    document.getElementById('navTracksBtn'),
+    document.getElementById('mobileTracksBtn')
+  ].filter(Boolean);
+
+  if (!tracksButtons.length) return;
+
+  function showTracksNotice() {
+    // If a live tracks URL is configured, navigate to it
+    if (TRACKS_CONFIG.url) {
+      window.open(TRACKS_CONFIG.url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // Otherwise show friendly non-intrusive toast notification
+    let toast = document.getElementById('tracksNoticeToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'tracksNoticeToast';
+      toast.className = 'fixed top-20 left-1/2 -translate-x-1/2 z-[110] bg-navy-950 text-white border-2 border-gold-400 shadow-2xl rounded-2xl px-6 py-3.5 flex items-center gap-3 transition-all duration-200 opacity-0 -translate-y-2 pointer-events-none max-w-[90vw]';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      toast.innerHTML = `
+        <span class="w-8 h-8 rounded-lg bg-gold-400 text-navy-950 flex items-center justify-center font-bold text-sm shrink-0 shadow-xs">💡</span>
+        <div>
+          <div class="font-display font-extrabold text-sm text-white">TRACKS &amp; PROBLEM STATEMENTS</div>
+          <p class="text-xs text-gold-300 font-medium">${TRACKS_CONFIG.message}</p>
+        </div>
+      `;
+      document.body.appendChild(toast);
+    }
+
+    // Display toast with smooth animation
+    clearTimeout(toast._hideTimer);
+    toast.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    toast._hideTimer = setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+    }, 3200);
+  }
+
+  tracksButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // If inside mobile drawer, close the drawer
+      const drawer = document.getElementById('mobileDrawer');
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      if (drawer && drawer.classList.contains('active')) {
+        drawer.classList.remove('active');
+        if (menuBtn) {
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+      showTracksNotice();
+    });
   });
 }
 
