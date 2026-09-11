@@ -178,19 +178,25 @@ function initSmoothScroll() {
   let lenisInstance = null;
 
   if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion) {
-    lenisInstance = new window.Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-    });
+    if (!window.lenis) {
+      lenisInstance = new window.Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 1.2,
+      });
 
-    function raf(time) {
-      lenisInstance.raf(time);
+      function raf(time) {
+        if (window.lenis) {
+          window.lenis.raf(time);
+        }
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
+      window.lenis = lenisInstance;
+    } else {
+      lenisInstance = window.lenis;
     }
-    requestAnimationFrame(raf);
-    window.lenis = lenisInstance;
   }
 
   const navLinks = document.querySelectorAll('a[href^="#"]');
@@ -473,10 +479,15 @@ function initActiveNav() {
     });
   }
 
-  // Passive scroll listener ensures zero latency during rapid scrolling or trackpad flicks
+  // Passive rAF-throttled scroll listener ensures buttery smooth 60fps/120fps rendering
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    if (!isClickScrolling) {
-      computeActiveSection();
+    if (!isClickScrolling && !scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        computeActiveSection();
+        scrollTicking = false;
+      });
     }
   }, { passive: true });
 
