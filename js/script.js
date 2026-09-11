@@ -508,22 +508,20 @@ function initActiveNav() {
 
 /**
  * =============================================================================
- * AMITY REGISTRATION CONFIGURATION
- * Official Amity registration server endpoints.
- * When Amity University provides dedicated registration portal URLs,
- * update the values below.
+ * REGISTRATION CONFIGURATION
+ * Official registration endpoints.
+ * When dedicated registration portal URLs are provided, update the values below.
  * =============================================================================
  */
 const AMITY_REGISTRATION_CONFIG = {
-  // Amity official registration destination for School Teams (Classes 9–12)
-  schoolUrl: 'https://amity.edu/gwalior',
-  // Amity official registration destination for College Teams (UG / PG)
-  collegeUrl: 'https://amity.edu/gwalior',
+  // Registration destination for School Teams (Classes 9–12) - to be added later
+  schoolUrl: '',
+  // Registration destination for College Teams (UG / PG) - to be added later
+  collegeUrl: '',
 };
 
 /**
  * Registration Selection Modal (School vs College)
- * Hands users off to the official Amity registration server.
  * Handles smooth opening/closing, focus management, ESC dismissal,
  * backdrop click, and body scroll lock.
  */
@@ -538,7 +536,7 @@ function initRegistrationModal() {
 
   if (!modal || !panel) return;
 
-  // Initialize external Amity URLs from configuration
+  // Initialize registration URLs from configuration if provided
   if (schoolOption && AMITY_REGISTRATION_CONFIG.schoolUrl) {
     schoolOption.href = AMITY_REGISTRATION_CONFIG.schoolUrl;
   }
@@ -650,11 +648,12 @@ function initRegistrationModal() {
     }
   });
 
-  // Auto-dismiss modal cleanly when user clicks either Amity registration destination
+  // Option cards do nothing on click for now until official registration URLs are connected
   [schoolOption, collegeOption].forEach(option => {
     if (option) {
-      option.addEventListener('click', () => {
-        setTimeout(closeModal, 150);
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Simply do nothing for now
       });
     }
   });
