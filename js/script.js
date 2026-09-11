@@ -11,6 +11,7 @@ function initHackSetu() {
   initHeaderScroll();
   initSmoothScroll();
   initActiveNav();
+  initRegistrationModal();
 }
 
 if (document.readyState === 'loading') {
@@ -194,6 +195,7 @@ function initSmoothScroll() {
   const navLinks = document.querySelectorAll('a[href^="#"]');
   navLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      if (this.classList.contains('js-reg-modal-trigger')) return;
       const targetId = this.getAttribute('href');
       if (!targetId || targetId === '#') return;
 
@@ -481,6 +483,7 @@ function initActiveNav() {
   const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
   allAnchorLinks.forEach(link => {
     link.addEventListener('click', function () {
+      if (this.classList.contains('js-reg-modal-trigger')) return;
       const href = this.getAttribute('href');
       if (!href || href === '#') return;
       const targetId = href.substring(1);
@@ -501,3 +504,156 @@ function initActiveNav() {
   // Run initial state calculation
   computeActiveSection();
 }
+
+/**
+ * Registration Selection Modal (School vs College)
+ * Handles smooth opening/closing, focus management, ESC dismissal,
+ * backdrop click, body scroll lock, and category navigation.
+ */
+function initRegistrationModal() {
+  const modal = document.getElementById('registrationModal');
+  const panel = document.getElementById('registrationModalPanel');
+  const backdrop = document.getElementById('registrationModalBackdrop');
+  const closeBtn = document.getElementById('closeRegModalBtn');
+  const triggers = document.querySelectorAll('.js-reg-modal-trigger');
+
+  if (!modal || !panel) return;
+
+  let lastActiveElement = null;
+
+  function openModal(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    lastActiveElement = document.activeElement;
+
+    // Close mobile drawer if open
+    const drawer = document.getElementById('mobileDrawer');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    if (drawer && drawer.classList.contains('active')) {
+      drawer.classList.remove('active');
+      if (menuBtn) {
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.classList.add('opacity-100', 'pointer-events-auto');
+    modal.setAttribute('aria-hidden', 'false');
+
+    panel.classList.remove('scale-96');
+    panel.classList.add('scale-100');
+
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+    if (window.lenis && typeof window.lenis.stop === 'function') {
+      window.lenis.stop();
+    }
+
+    // Accessible focus management: focus on the first option card
+    const firstOption = modal.querySelector('.reg-option-card');
+    if (firstOption) {
+      setTimeout(() => firstOption.focus(), 60);
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.setAttribute('aria-hidden', 'true');
+
+    panel.classList.remove('scale-100');
+    panel.classList.add('scale-96');
+
+    // Restore background scrolling
+    document.body.style.overflow = '';
+    if (window.lenis && typeof window.lenis.start === 'function') {
+      window.lenis.start();
+    }
+
+    // Restore previous focus
+    if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+      lastActiveElement.focus();
+    }
+  }
+
+  // Attach click listener to all registration triggers
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', openModal);
+  });
+
+  // Close button click
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Backdrop click
+  if (backdrop) {
+    backdrop.addEventListener('click', closeModal);
+  }
+
+  // Keyboard accessibility: ESC key to dismiss, and Tab key focus trap
+  window.addEventListener('keydown', (e) => {
+    if (modal.getAttribute('aria-hidden') === 'false') {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+      } else if (e.key === 'Tab') {
+        const focusable = modal.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+  });
+
+  // Handle clicking an option card inside the modal
+  const optionLinks = modal.querySelectorAll('.reg-option-card');
+  optionLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      closeModal();
+
+      if (href && href.startsWith('#')) {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          e.preventDefault();
+          const header = document.querySelector('header');
+          const headerHeight = header ? header.offsetHeight : 76;
+          setTimeout(() => {
+            if (window.lenis) {
+              window.lenis.scrollTo(targetElement, {
+                offset: -headerHeight - 16,
+                duration: 1.2
+              });
+            } else {
+              const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+              const offsetPosition = elementPosition - headerHeight - 16;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 150);
+        }
+      }
+    });
+  });
+}
+
