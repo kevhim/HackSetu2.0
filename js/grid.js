@@ -1,21 +1,15 @@
 /**
- * HackSetu 2.0 — Interactive Obsidian Cyber-Grid Background
+ * HackSetu 2.0 — Interactive Obsidian Cyber-Grid & Ambient 3D Particle Field
  * 
  * High-performance dark-mode technical grid rendered on full-screen canvas.
  * Zero blue, zero purple, zero green: Deep Obsidian (#08080A) with subtle
- * titanium line coordinates and reactive cyber-amber glow nodes.
- * 
- * Magnetic Cursor Warp: Grid lines smoothly distort around cursor
- * with cubic ease-out spring physics.
- * 
- * Performance: 60/120 FPS requestAnimationFrame, passive listeners,
- * full prefers-reduced-motion accessibility safeguard.
+ * titanium line coordinates, reactive cyber-amber glow nodes, floating embers,
+ * and a cursor-following ambient volumetric light spotlight.
  */
 
 (function () {
   'use strict';
 
-  // Bail on reduced motion preference with sleek obsidian fallback
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.body.style.setProperty('--grid-bg', '1');
     const style = document.createElement('style');
@@ -43,17 +37,20 @@
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  // ─── Obsidian Cyber-Grid Config ───
-  const GRID_SIZE = 48;                         // 48px technical grid cell
-  const LINE_COLOR = 'rgba(255, 255, 255, 0.055)'; // Subtle monochrome titanium coordinates
-  const DOT_COLOR = 'rgba(245, 158, 11, 0.45)';    // Cyber-amber glowing intersection nodes
-  const DOT_RADIUS = 1.0;                      // Base dot size at intersections
-  const DISTORT_RADIUS = 220;                  // Cursor influence radius in px
-  const DISTORT_STRENGTH = 20;                 // Max pixel displacement at center
-  const SMOOTH_FACTOR = 0.08;                  // Silky lerp speed for cursor tracking
-  const BG_COLOR = '#08080A';                  // Deep obsidian void background
+  // ─── Config ───
+  const GRID_SIZE = 48;
+  const LINE_COLOR = 'rgba(255, 255, 255, 0.055)';
+  const DOT_COLOR = 'rgba(245, 158, 11, 0.55)';
+  const DOT_RADIUS = 1.2;
+  const DISTORT_RADIUS = 240;
+  const DISTORT_STRENGTH = 22;
+  const SMOOTH_FACTOR = 0.08;
+  const BG_COLOR = '#08080A';
 
-  // ─── State ───
+  // Floating Cyber Embers
+  const EMBER_COUNT = 38;
+  const embers = [];
+
   let width = 0;
   let height = 0;
   let dpr = 1;
@@ -64,7 +61,22 @@
   let animId = null;
   let isVisible = true;
 
-  // ─── Resize ───
+  function initEmbers() {
+    embers.length = 0;
+    for (let i = 0; i < EMBER_COUNT; i++) {
+      embers.push({
+        x: Math.random() * (width || window.innerWidth),
+        y: Math.random() * (height || window.innerHeight),
+        radius: 0.8 + Math.random() * 1.8,
+        speedY: 0.2 + Math.random() * 0.45,
+        speedX: (Math.random() - 0.5) * 0.2,
+        opacity: 0.15 + Math.random() * 0.5,
+        fadeSpeed: 0.005 + Math.random() * 0.008,
+        increasing: Math.random() > 0.5
+      });
+    }
+  }
+
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = window.innerWidth;
@@ -74,9 +86,10 @@
     canvas.style.width = width + 'px';
     canvas.style.height = height + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    if (!embers.length) initEmbers();
   }
 
-  // ─── Distortion Function (Cubic Elastic Falloff) ───
   function distort(px, py) {
     const dx = px - smoothX;
     const dy = py - smoothY;
@@ -86,10 +99,8 @@
       return { x: px, y: py };
     }
 
-    // Smooth cubic falloff: organic magnetic warp
     const t = 1 - (dist / DISTORT_RADIUS);
     const force = t * t * t * DISTORT_STRENGTH;
-
     const angle = Math.atan2(dy, dx);
     return {
       x: px + Math.cos(angle) * force,
@@ -97,13 +108,22 @@
     };
   }
 
-  // ─── Draw Frame ───
   function draw() {
     ctx.clearRect(0, 0, width, height);
 
-    // Fill obsidian void
+    // Deep obsidian void
     ctx.fillStyle = BG_COLOR;
     ctx.fillRect(0, 0, width, height);
+
+    // Dynamic cursor spotlight aura
+    if (smoothX > -100 && smoothY > -100) {
+      const cursorGlow = ctx.createRadialGradient(smoothX, smoothY, 10, smoothX, smoothY, 260);
+      cursorGlow.addColorStop(0, 'rgba(245, 158, 11, 0.09)');
+      cursorGlow.addColorStop(0.5, 'rgba(245, 158, 11, 0.025)');
+      cursorGlow.addColorStop(1, 'transparent');
+      ctx.fillStyle = cursorGlow;
+      ctx.fillRect(0, 0, width, height);
+    }
 
     // Grid coordinates
     const startX = -GRID_SIZE;
@@ -114,7 +134,6 @@
     const cols = Math.ceil((endX - startX) / GRID_SIZE) + 1;
     const rows = Math.ceil((endY - startY) / GRID_SIZE) + 1;
 
-    // Compute distorted grid points
     const points = new Array(cols);
     for (let c = 0; c < cols; c++) {
       points[c] = new Array(rows);
@@ -125,21 +144,17 @@
       }
     }
 
-    // Draw horizontal grid lines
+    // Horizontal lines
     ctx.strokeStyle = LINE_COLOR;
     ctx.lineWidth = 0.75;
-
     for (let r = 0; r < rows; r++) {
       ctx.beginPath();
       for (let c = 0; c < cols; c++) {
         const p = points[c][r];
-        if (c === 0) {
-          ctx.moveTo(p.x, p.y);
-        } else {
+        if (c === 0) ctx.moveTo(p.x, p.y);
+        else {
           const prev = points[c - 1][r];
-          const midX = (prev.x + p.x) / 2;
-          const midY = (prev.y + p.y) / 2;
-          ctx.quadraticCurveTo(prev.x, prev.y, midX, midY);
+          ctx.quadraticCurveTo(prev.x, prev.y, (prev.x + p.x) / 2, (prev.y + p.y) / 2);
         }
       }
       if (cols > 1) {
@@ -149,18 +164,15 @@
       ctx.stroke();
     }
 
-    // Draw vertical grid lines
+    // Vertical lines
     for (let c = 0; c < cols; c++) {
       ctx.beginPath();
       for (let r = 0; r < rows; r++) {
         const p = points[c][r];
-        if (r === 0) {
-          ctx.moveTo(p.x, p.y);
-        } else {
+        if (r === 0) ctx.moveTo(p.x, p.y);
+        else {
           const prev = points[c][r - 1];
-          const midX = (prev.x + p.x) / 2;
-          const midY = (prev.y + p.y) / 2;
-          ctx.quadraticCurveTo(prev.x, prev.y, midX, midY);
+          ctx.quadraticCurveTo(prev.x, prev.y, (prev.x + p.x) / 2, (prev.y + p.y) / 2);
         }
       }
       if (rows > 1) {
@@ -170,7 +182,7 @@
       ctx.stroke();
     }
 
-    // Draw reactive cyber-amber intersection nodes near cursor
+    // Reactive amber intersection nodes
     ctx.fillStyle = DOT_COLOR;
     for (let c = 0; c < cols; c++) {
       for (let r = 0; r < rows; r++) {
@@ -183,8 +195,8 @@
 
         if (dist < DISTORT_RADIUS * 1.25) {
           const t = 1 - (dist / (DISTORT_RADIUS * 1.25));
-          const radius = DOT_RADIUS + t * 2.0; // Glowing nodes expand near cursor
-          ctx.globalAlpha = 0.35 + t * 0.65;
+          const radius = DOT_RADIUS + t * 2.2;
+          ctx.globalAlpha = 0.4 + t * 0.6;
           ctx.beginPath();
           ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
           ctx.fill();
@@ -193,16 +205,42 @@
     }
     ctx.globalAlpha = 1;
 
-    // Atmospheric warm amber radial glow at top-center
-    const gradient = ctx.createRadialGradient(width / 2, -60, 0, width / 2, -60, 850);
-    gradient.addColorStop(0, 'rgba(245, 158, 11, 0.05)');
-    gradient.addColorStop(0.5, 'rgba(245, 158, 11, 0.015)');
+    // Render & update floating cyber embers
+    embers.forEach(ember => {
+      ember.y -= ember.speedY;
+      ember.x += ember.speedX;
+
+      if (ember.increasing) {
+        ember.opacity += ember.fadeSpeed;
+        if (ember.opacity >= 0.7) ember.increasing = false;
+      } else {
+        ember.opacity -= ember.fadeSpeed;
+        if (ember.opacity <= 0.1) ember.increasing = true;
+      }
+
+      // Recycle embers when out of view
+      if (ember.y < -10) {
+        ember.y = height + 10;
+        ember.x = Math.random() * width;
+      }
+      if (ember.x < -10) ember.x = width + 10;
+      if (ember.x > width + 10) ember.x = -10;
+
+      ctx.fillStyle = `rgba(245, 158, 11, ${ember.opacity})`;
+      ctx.beginPath();
+      ctx.arc(ember.x, ember.y, ember.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Top atmosphere radial warm gradient
+    const gradient = ctx.createRadialGradient(width / 2, -60, 0, width / 2, -60, 950);
+    gradient.addColorStop(0, 'rgba(245, 158, 11, 0.08)');
+    gradient.addColorStop(0.5, 'rgba(245, 158, 11, 0.02)');
     gradient.addColorStop(1, 'transparent');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
   }
 
-  // ─── Animation Loop ───
   function animate() {
     if (!isVisible) {
       animId = requestAnimationFrame(animate);
@@ -216,7 +254,6 @@
     animId = requestAnimationFrame(animate);
   }
 
-  // ─── Mouse Tracking ───
   function onMouseMove(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -243,10 +280,8 @@
     isVisible = !document.hidden;
   }
 
-  // ─── Init ───
   function init() {
     resize();
-    
     window.addEventListener('resize', resize, { passive: true });
     document.addEventListener('mousemove', onMouseMove, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave, { passive: true });
