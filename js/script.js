@@ -1,6 +1,9 @@
 /**
- * HACKSETU 2.0 - Core Vanilla JavaScript (Light Mode Edition)
- * Zero dependencies: Real-time countdown lifecycle, accessible mobile drawer, scroll interactions
+ * HACKSETU 2.0 - Core Vanilla JavaScript (Obsidian Cyber-Gold Edition)
+ * Zero dependencies: Real-time countdown lifecycle, accessible mobile drawer,
+ * Lenis smooth momentum scroll, keyboard-accessible registration modal,
+ * and tracks notification toast.
+ * Strictly 0% Blue, 0% Purple, 0% Green.
  */
 
 function initHackSetu() {
@@ -12,6 +15,7 @@ function initHackSetu() {
   initSmoothScroll();
   initActiveNav();
   initRegistrationModal();
+  initTracksNav();
 }
 
 if (document.readyState === 'loading') {
@@ -31,7 +35,6 @@ function initCountdownTimer() {
   const minutesEl = document.getElementById('cdMinutes');
   const secondsEl = document.getElementById('cdSeconds');
   const countdownGrid = document.getElementById('countdownGrid');
-  const countdownWrapper = document.getElementById('countdownWrapper');
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
@@ -48,11 +51,11 @@ function initCountdownTimer() {
       if (countdownGrid) {
         countdownGrid.innerHTML = `
           <div class="flex flex-col items-center gap-3 w-full py-4">
-            <div class="inline-flex items-center gap-2.5 bg-gold-400 text-navy-900 border border-gold-500 px-5 py-2 rounded-full font-display text-xl font-extrabold tracking-wider">
-              <span class="pulse-indicator pulse-indicator-gold"></span>
+            <div class="inline-flex items-center gap-2.5 bg-amber-500 text-black border border-amber-400 px-6 py-2.5 rounded-full font-display text-xl font-black tracking-wider shadow-lg shadow-amber-500/20">
+              <span class="pulse-indicator pulse-indicator-white"></span>
               HACKSETU 2.0 IS LIVE
             </div>
-            <p class="text-ink-600 text-base">36-Hour Non-Stop Hackathon is currently in progress at E-Block Seminar Hall, AUMP.</p>
+            <p class="text-zinc-400 text-sm sm:text-base font-medium">36-Hour Non-Stop Hackathon is currently in progress at E-Block Seminar Hall, AUMP.</p>
           </div>
         `;
       }
@@ -64,10 +67,10 @@ function initCountdownTimer() {
       if (countdownGrid) {
         countdownGrid.innerHTML = `
           <div class="flex flex-col items-center gap-3 w-full py-4">
-            <div class="inline-flex items-center gap-2.5 bg-navy-100 text-navy-900 border border-navy-200 px-5 py-2 rounded-full font-display text-xl font-extrabold tracking-wider">
+            <div class="inline-flex items-center gap-2.5 bg-zinc-800 text-white border border-white/15 px-6 py-2.5 rounded-full font-display text-xl font-black tracking-wider">
               EVENT CONCLUDED
             </div>
-            <p class="text-ink-600 text-base">Thank you to all 200 national teams and partners who made HackSetu 2.0 extraordinary.</p>
+            <p class="text-zinc-400 text-sm sm:text-base font-medium">Thank you to all 200 national teams and partners who made HackSetu 2.0 extraordinary.</p>
           </div>
         `;
       }
@@ -99,51 +102,43 @@ function initMobileDrawer() {
 
   if (!menuBtn || !drawer) return;
 
-  function openDrawer() {
-    drawer.classList.add('active');
-    menuBtn.setAttribute('aria-expanded', 'true');
+  function toggleMenu() {
+    const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', !isExpanded);
+    drawer.classList.toggle('active');
   }
 
-  function closeDrawer() {
-    drawer.classList.remove('active');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }
+  menuBtn.addEventListener('click', toggleMenu);
 
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = drawer.classList.contains('active');
-    if (isOpen) {
-      closeDrawer();
-    } else {
-      openDrawer();
-    }
-  });
-
-  // Close when clicking any nav link in drawer
-  drawer.querySelectorAll('a').forEach(link => {
+  // Close drawer on navigation link click
+  const drawerLinks = drawer.querySelectorAll('a');
+  drawerLinks.forEach(link => {
     link.addEventListener('click', () => {
-      closeDrawer();
+      menuBtn.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('active');
     });
   });
 
-  // Close when clicking outside
+  // Close drawer on Outside click
   document.addEventListener('click', (e) => {
-    if (!drawer.contains(e.target) && !menuBtn.contains(e.target)) {
-      closeDrawer();
+    if (drawer.classList.contains('active') && !drawer.contains(e.target) && !menuBtn.contains(e.target)) {
+      menuBtn.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('active');
     }
   });
 
-  // Close on Escape key
+  // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('active')) {
-      closeDrawer();
+      menuBtn.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('active');
       menuBtn.focus();
     }
   });
 }
 
 /**
- * Sticky Header shadow on scroll
+ * Sticky Header Scroll Shadow
  */
 function initHeaderScroll() {
   const header = document.getElementById('header');
@@ -151,13 +146,13 @@ function initHeaderScroll() {
 
   let isScrolled = false;
   const handleScroll = () => {
-    const shouldScroll = window.scrollY > 12;
+    const shouldScroll = window.scrollY > 15;
     if (shouldScroll !== isScrolled) {
       isScrolled = shouldScroll;
       if (isScrolled) {
-        header.classList.add('shadow-lg');
+        header.classList.add('shadow-2xl', 'border-white/10', 'bg-obsidian-950/95');
       } else {
-        header.classList.remove('shadow-lg');
+        header.classList.remove('shadow-2xl');
       }
     }
   };
@@ -166,21 +161,21 @@ function initHeaderScroll() {
 }
 
 /**
- * Smooth scrolling powered by Lenis with sticky navbar offset compensation
+ * Ultra-Smooth Momentum Scrolling powered by Lenis
  */
 function initSmoothScroll() {
   const header = document.querySelector('header');
   const headerHeight = header ? header.offsetHeight : 76;
 
-  // Initialize Lenis smooth scroll if loaded and user hasn't requested reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let lenisInstance = null;
 
   if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion) {
     lenisInstance = new window.Lenis({
-      duration: 1.1,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.5,
     });
 
@@ -205,7 +200,7 @@ function initSmoothScroll() {
         if (lenisInstance) {
           lenisInstance.scrollTo(targetElement, {
             offset: -headerHeight - 16,
-            duration: 1.2
+            duration: 1.15
           });
         } else {
           const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
@@ -223,14 +218,11 @@ function initSmoothScroll() {
 /**
  * Restrained Typewriter Effect for Hero Emphasized Phrase
  * Rotates through key theme phrases: INNOVATION, TECHNOLOGY, IDEAS, IMPACT
- * Respects prefers-reduced-motion, maintains static fallback for SEO / no-JS
- * Natural typing cadence, pause before deleting, zero layout shifting
  */
 function initTypewriter() {
   const textEl = document.getElementById('typewriterText');
   if (!textEl) return;
 
-  // Respect prefers-reduced-motion: leave static pre-rendered text untouched
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (motionQuery && motionQuery.matches) {
     return;
@@ -238,13 +230,13 @@ function initTypewriter() {
 
   const phrases = ['INNOVATION', 'TECHNOLOGY', 'IDEAS', 'IMPACT'];
   let phraseIndex = 0;
-  let charIndex = phrases[0].length; // start with already rendered 'INNOVATION'
+  let charIndex = phrases[0].length;
   let isDeleting = true;
 
-  const typingSpeed = 100; // ms base typing speed
-  const deletingSpeed = 48; // ms deleting speed
-  const pauseOnComplete = 2000; // ms pause when phrase is completed
-  const pauseOnEmpty = 360; // ms pause before typing next phrase
+  const typingSpeed = 95;
+  const deletingSpeed = 45;
+  const pauseOnComplete = 2100;
+  const pauseOnEmpty = 340;
 
   function typeTick() {
     const currentPhrase = phrases[phraseIndex];
@@ -271,26 +263,21 @@ function initTypewriter() {
         return;
       }
 
-      // Subtle natural variation (±20ms) for human-like typing cadence
-      const variation = Math.floor(Math.random() * 41) - 20;
-      setTimeout(typeTick, Math.max(65, typingSpeed + variation));
+      const variation = Math.floor(Math.random() * 36) - 18;
+      setTimeout(typeTick, Math.max(60, typingSpeed + variation));
     }
   }
 
-  // Allow reader to read the initial pre-rendered phrase first before rotation starts
   setTimeout(typeTick, pauseOnComplete);
 }
 
 /**
  * Minimal Scroll Reveal via IntersectionObserver
- * Subtly reveals major section cards, headings, and groups upon scrolling into view
- * Respects prefers-reduced-motion, provides immediate fallback if JS or observer is unavailable
  */
 function initScrollReveal() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const supportsObserver = 'IntersectionObserver' in window;
 
-  // If reduced motion is enabled or IntersectionObserver is not supported, leave content visible without animation
   if (prefersReducedMotion || !supportsObserver) {
     return;
   }
@@ -298,13 +285,12 @@ function initScrollReveal() {
   const revealElements = document.querySelectorAll('.reveal-on-scroll');
   if (!revealElements.length) return;
 
-  // Safely activate reveal CSS now that JS and observer support are confirmed
   document.documentElement.classList.add('js-reveal-enabled');
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -48px 0px',
-    threshold: 0.1
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.08
   };
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -313,7 +299,6 @@ function initScrollReveal() {
         entry.target.classList.add('is-revealed');
         observer.unobserve(entry.target);
 
-        // After entrance transition finishes, clean up will-change property
         entry.target.addEventListener('transitionend', (e) => {
           if (e.propertyName === 'opacity') {
             entry.target.style.willChange = 'auto';
@@ -325,9 +310,8 @@ function initScrollReveal() {
 
   const viewportHeight = window.innerHeight;
   revealElements.forEach(el => {
-    // If element is already in or above initial viewport fold, reveal immediately without stagger delay
     const rect = el.getBoundingClientRect();
-    if (rect.top < viewportHeight - 48) {
+    if (rect.top < viewportHeight - 40) {
       el.style.setProperty('--reveal-delay', '0');
     }
     revealObserver.observe(el);
@@ -336,13 +320,10 @@ function initScrollReveal() {
 
 /**
  * ACTIVE SECTION NAVIGATION
- * Indicates which section of the page the visitor is currently viewing.
- * Uses IntersectionObserver, Vanilla JS, and the existing navigation structure.
  */
 function initActiveNav() {
-  const targetSectionIds = ['highlights', 'about', 'prizes', 'venue', 'register'];
+  const targetSectionIds = ['highlights', 'tracks', 'about', 'prizes', 'venue', 'contact', 'register'];
 
-  // Query valid elements currently present in the DOM
   const trackedSections = [];
   targetSectionIds.forEach(id => {
     const el = document.getElementById(id);
@@ -370,16 +351,15 @@ function initActiveNav() {
       if (href && href === `#${activeId}`) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
-        // Update desktop nav link colors
         if (link.classList.contains('nav-link-custom')) {
-          link.classList.remove('text-white/70');
+          link.classList.remove('text-zinc-400');
           link.classList.add('text-white');
         }
       } else {
         link.classList.remove('active');
         link.removeAttribute('aria-current');
         if (link.classList.contains('nav-link-custom')) {
-          link.classList.add('text-white/70');
+          link.classList.add('text-zinc-400');
           link.classList.remove('text-white');
         }
       }
@@ -389,7 +369,7 @@ function initActiveNav() {
   function getFocalLine() {
     const header = document.querySelector('header');
     const headerHeight = header ? header.offsetHeight : 76;
-    return headerHeight + 20; // Reading focal line ~96px from viewport top
+    return headerHeight + 20;
   }
 
   function computeActiveSection() {
@@ -399,13 +379,11 @@ function initActiveNav() {
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
 
-    // Boundary 1: At top of page (Hero section), no section is active
     if (scrollY < 180) {
       setActive(null);
       return;
     }
 
-    // Boundary 2: At or near bottom of page, activate Register section
     if (windowHeight + scrollY >= docHeight - 40) {
       setActive('register');
       return;
@@ -413,35 +391,30 @@ function initActiveNav() {
 
     const focalLine = getFocalLine();
 
-    // Nested section check: #prizes is located inside #about
+    // Nested check: #prizes inside #about
     const prizesEl = document.getElementById('prizes');
     if (prizesEl) {
       const pRect = prizesEl.getBoundingClientRect();
-      // If prizes card covers the focal reading line
       if (pRect.top <= focalLine + 60 && pRect.bottom >= focalLine) {
         setActive('prizes');
         return;
       }
     }
 
-    // Determine which section currently encompasses or is closest to the focal line
     let bestMatch = null;
     let minDistance = Infinity;
 
     for (const item of trackedSections) {
-      if (item.id === 'prizes') continue; // Handled specifically above
+      if (item.id === 'prizes') continue;
 
       const rect = item.element.getBoundingClientRect();
-
-      // Section covers the focal line
       if (rect.top <= focalLine && rect.bottom > focalLine) {
         bestMatch = item.id;
         break;
       }
 
-      // Section top is approaching focal line
       const dist = Math.abs(rect.top - focalLine);
-      if (rect.top > focalLine && dist < 120 && dist < minDistance) {
+      if (rect.top > focalLine && dist < 130 && dist < minDistance) {
         minDistance = dist;
         bestMatch = item.id;
       }
@@ -452,7 +425,6 @@ function initActiveNav() {
     }
   }
 
-  // IntersectionObserver for reactive boundary detection
   const supportsObserver = 'IntersectionObserver' in window;
   if (supportsObserver) {
     const observerOptions = {
@@ -472,14 +444,12 @@ function initActiveNav() {
     });
   }
 
-  // Passive scroll listener ensures zero latency during rapid scrolling or trackpad flicks
   window.addEventListener('scroll', () => {
     if (!isClickScrolling) {
       computeActiveSection();
     }
   }, { passive: true });
 
-  // Smooth link click coordination
   const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
   allAnchorLinks.forEach(link => {
     link.addEventListener('click', function () {
@@ -501,14 +471,11 @@ function initActiveNav() {
     });
   });
 
-  // Run initial state calculation
   computeActiveSection();
 }
 
 /**
  * Registration Audience Selection Modal (School vs College)
- * Polished modal with smooth entrance, keyboard accessibility,
- * backdrop-click dismiss, and body scroll lock.
  */
 function initRegistrationModal() {
   const modal = document.getElementById('registrationModal');
@@ -545,13 +512,11 @@ function initRegistrationModal() {
     panel.classList.remove('scale-96');
     panel.classList.add('scale-100');
 
-    // Prevent background scrolling
     document.body.style.overflow = 'hidden';
     if (window.lenis && typeof window.lenis.stop === 'function') {
       window.lenis.stop();
     }
 
-    // Accessible focus management: focus on the primary option or close button
     const firstOption = modal.querySelector('.reg-option-card');
     if (firstOption) {
       setTimeout(() => firstOption.focus(), 60);
@@ -566,34 +531,28 @@ function initRegistrationModal() {
     panel.classList.remove('scale-100');
     panel.classList.add('scale-96');
 
-    // Restore background scrolling
     document.body.style.overflow = '';
     if (window.lenis && typeof window.lenis.start === 'function') {
       window.lenis.start();
     }
 
-    // Restore focus
     if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
       lastActiveElement.focus();
     }
   }
 
-  // Attach click listener to all registration triggers
   triggers.forEach(trigger => {
     trigger.addEventListener('click', openModal);
   });
 
-  // Close button click
   if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
   }
 
-  // Backdrop click
   if (backdrop) {
     backdrop.addEventListener('click', closeModal);
   }
 
-  // Keyboard accessibility: ESC key to dismiss, and Tab key focus trap
   window.addEventListener('keydown', (e) => {
     if (modal.getAttribute('aria-hidden') === 'false') {
       if (e.key === 'Escape') {
@@ -623,7 +582,6 @@ function initRegistrationModal() {
     }
   });
 
-  // Clicking an option in the modal allows the link to open in new tab and auto-closes the modal smoothly
   const optionLinks = modal.querySelectorAll('.reg-option-card');
   optionLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -632,3 +590,67 @@ function initRegistrationModal() {
   });
 }
 
+/**
+ * Tracks & Problem Statement Navigation Handler
+ */
+const TRACKS_CONFIG = {
+  url: null,
+  message: 'Official Problem Statements will be released soon.',
+};
+
+function initTracksNav() {
+  const tracksButtons = [
+    document.getElementById('navTracksBtn'),
+    document.getElementById('mobileTracksBtn')
+  ].filter(Boolean);
+
+  if (!tracksButtons.length) return;
+
+  function showTracksNotice() {
+    if (TRACKS_CONFIG.url) {
+      window.open(TRACKS_CONFIG.url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    let toast = document.getElementById('tracksNoticeToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'tracksNoticeToast';
+      toast.className = 'fixed top-20 left-1/2 -translate-x-1/2 z-[120] bg-obsidian-900 text-white border border-amber-500/40 shadow-2xl shadow-black/80 rounded-2xl px-6 py-3.5 flex items-center gap-3 transition-all duration-200 opacity-0 -translate-y-2 pointer-events-none max-w-[90vw] backdrop-blur-xl';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      toast.innerHTML = `
+        <span class="w-8 h-8 rounded-lg bg-amber-500 text-black flex items-center justify-center font-bold text-sm shrink-0 shadow-xs">💡</span>
+        <div>
+          <div class="font-display font-extrabold text-sm text-white">TRACKS &amp; PROBLEM STATEMENTS</div>
+          <p class="text-xs text-amber-400 font-medium">${TRACKS_CONFIG.message}</p>
+        </div>
+      `;
+      document.body.appendChild(toast);
+    }
+
+    clearTimeout(toast._hideTimer);
+    toast.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    toast._hideTimer = setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+    }, 3200);
+  }
+
+  tracksButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const drawer = document.getElementById('mobileDrawer');
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      if (drawer && drawer.classList.contains('active')) {
+        drawer.classList.remove('active');
+        if (menuBtn) {
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+      showTracksNotice();
+    });
+  });
+}

@@ -1,12 +1,11 @@
 /* ==========================================================================
-   HackSetu 2.0 — Custom CSS (companion to Tailwind utilities)
-   Only styles that Tailwind CDN cannot express: animations, pseudo-elements,
-   complex keyframes, and the background grid texture.
+   HackSetu 2.0 — Obsidian Cyber-Gold Custom CSS
+   Strict Aesthetic: 0% Blue, 0% Purple, 0% Green
+   Deep Obsidian (#08080A), Titanium White, and Electric Cyber-Amber (#F59E0B)
    ========================================================================== */
 
 /* ==========================================================================
-   1. Background Grid & Smooth Scrolling
-   Canvas replaces the static CSS grid for mouse-reactive distortion effect.
+   1. Lenis Smooth Scrolling Overrides & Scrollbar Elimination
    ========================================================================== */
 html.lenis, html.lenis body {
   height: auto;
@@ -21,8 +20,24 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
+/* Hide native scrollbar cross-browser while preserving full fluid scrolling */
+html,
+body {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and legacy Edge */
+  background-color: #08080A;
+  color: #F4F4F5;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Chromium, Edge */
+  width: 0;
+  height: 0;
+}
+
 /* ==========================================================================
-   Announcement Banner Infinite Marquee Ticker
+   2. Announcement Banner Infinite Marquee Ticker
    ========================================================================== */
 .ticker-wrap {
   width: 100%;
@@ -33,7 +48,7 @@ html.lenis, html.lenis body {
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-slide 34s linear infinite;
+  animation: ticker-slide 32s linear infinite;
   will-change: transform;
 }
 
@@ -59,16 +74,14 @@ html.lenis, html.lenis body {
   }
 }
 
-
-
 /* ==========================================================================
-   2. Typewriter Cursor Blink
+   3. Typewriter Cursor Blink
    ========================================================================== */
 .typewriter-cursor {
   display: inline-block;
   width: 2.5px;
   height: 0.95em;
-  background-color: #CA9A0C;
+  background-color: #F59E0B;
   margin-left: 3px;
   vertical-align: middle;
   border-radius: 1px;
@@ -82,39 +95,38 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   3. Pulse Indicator (Announcement Bar / Live Badge)
+   4. Pulse Indicators (Cyber-Amber & Monochrome)
    ========================================================================== */
 .pulse-indicator {
   width: 8px;
   height: 8px;
-  background-color: #0A1B3D;
+  background-color: #F59E0B;
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(10, 27, 61, 0.5);
-  animation: pulse-ring 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+  animation: pulse-ring-amber 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
   flex-shrink: 0;
 }
 
-/* Gold pulse variant for live state */
-.pulse-indicator-gold {
-  background-color: #F5B914;
-  box-shadow: 0 0 0 0 rgba(245, 185, 20, 0.5);
-  animation: pulse-ring-gold 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+.pulse-indicator-white {
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+  animation: pulse-ring-white 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(10, 27, 61, 0.5); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(10, 27, 61, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(10, 27, 61, 0); }
+@keyframes pulse-ring-amber {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
 }
 
-@keyframes pulse-ring-gold {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 185, 20, 0.5); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(245, 185, 20, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 185, 20, 0); }
+@keyframes pulse-ring-white {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
 }
 
 /* ==========================================================================
-   4. Scroll Reveal (IntersectionObserver Based)
+   5. Scroll Reveal (IntersectionObserver Based)
    ========================================================================== */
 .reveal-on-scroll {
   opacity: 1;
@@ -125,11 +137,11 @@ html.lenis, html.lenis body {
 .js-reveal-enabled .reveal-on-scroll {
   opacity: 0;
   transform: translateY(18px);
-  filter: blur(3px);
+  filter: blur(4px);
   transition:
-    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
-    filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 650ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: calc(var(--reveal-delay, 0) * 75ms);
   will-change: opacity, transform, filter;
 }
@@ -141,7 +153,7 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   5. Countdown Seconds Pulse
+   6. Countdown Seconds Pulse
    ========================================================================== */
 @keyframes seconds-tick {
   0% { transform: scale(1); }
@@ -154,7 +166,7 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   6. Mobile Drawer Transitions
+   7. Mobile Drawer Transitions
    ========================================================================== */
 .mobile-drawer {
   visibility: hidden;
@@ -162,9 +174,9 @@ html.lenis, html.lenis body {
   pointer-events: none;
   transform: translateY(-8px);
   transition:
-    opacity 200ms ease,
-    visibility 200ms ease,
-    transform 200ms ease;
+    opacity 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 220ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mobile-drawer.active {
@@ -175,7 +187,7 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   7. Nav Link Active Underline
+   8. Nav Link Active Underline & Mobile Dot
    ========================================================================== */
 .nav-link-custom::after {
   content: '';
@@ -184,7 +196,7 @@ html.lenis, html.lenis body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: #F5B914;
+  background: #F59E0B;
   border-radius: 2px;
   opacity: 0;
   transform: scaleX(0);
@@ -195,8 +207,8 @@ html.lenis, html.lenis body {
 }
 
 .nav-link-custom:hover::after {
-  opacity: 0.65;
-  transform: scaleX(0.7);
+  opacity: 0.7;
+  transform: scaleX(0.75);
 }
 
 .nav-link-custom.active::after {
@@ -204,18 +216,17 @@ html.lenis, html.lenis body {
   transform: scaleX(1);
 }
 
-/* Mobile nav active dot */
 .mobile-nav-link.active::after {
   content: '';
   width: 6px;
   height: 6px;
-  background: #F5B914;
+  background: #F59E0B;
   border-radius: 50%;
   display: inline-block;
 }
 
 /* ==========================================================================
-   8. Hamburger Animation
+   9. Hamburger Animation
    ========================================================================== */
 .mobile-menu-btn[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -228,7 +239,7 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   9. Accessibility: prefers-reduced-motion
+   10. Accessibility: prefers-reduced-motion
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -249,17 +260,17 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   10. Focus Visible Rings
+   11. Focus Visible Rings (Cyber-Amber)
    ========================================================================== */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #1D4ED8;
+  outline: 2px solid #F59E0B;
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 /* ==========================================================================
-   11. Registration Audience Selection Modal
+   12. Registration Audience Selection Modal & Option Cards
    ========================================================================== */
 #registrationModal {
   will-change: opacity;
@@ -292,3 +303,24 @@ button:focus-visible {
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   13. Obsidian Glassmorphism Cards & Glowing Borders
+   ========================================================================== */
+.obsidian-card {
+  background: rgba(18, 18, 23, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
+}
+
+.obsidian-card:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(245, 158, 11, 0.12);
+}
+
+.obsidian-card-active {
+  background: rgba(24, 24, 30, 0.88);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.18);
+}
