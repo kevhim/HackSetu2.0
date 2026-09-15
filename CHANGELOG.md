@@ -24,11 +24,10 @@ This document provides a detailed overview of all design, content, architectural
   - Linked the `[ FOR QUERIES / DOUBTS ]` CTA directly to `#student-coordinators` with automatic navbar offset compensation via Lenis.
 - **Builder Flow Section**:
   - Added compact **"BRING YOUR IDEA. BUILD IT HERE."** section bridging About and Venue with a 3-step builder flow: *01 Ideate*, *02 Build*, *03 Demonstrate*.
-- **Refined Hackathon Mission & CTA Copy**:
-  - Replaced generic ACC mission copy with: **“FROM PROBLEMS TO PROTOTYPES.”** (*Build solutions that move beyond the idea stage.*).
-  - Updated footer CTA banner headline to: **"READY TO TURN AN IDEA INTO SOMETHING REAL?"** (*Bring your team, pick a problem, and build something worth showing.*).
-- **Venue What to Bring Standardized**:
-  - Standardized checklist item: *Valid Student ID / Aadhaar ID, Laptop, Charger, Extension Cord*.
+- **ACC Mission & Alan Turing Editorial Composition**:
+  - Replaced generic copy with high-impact builder mission: **“WE DON’T JUST RUN EVENTS. WE BUILD THE CULTURE.”** (*A community of students who build, lead, create, and make things happen.*).
+  - Designed an elegant two-column responsive editorial layout pairing the ACC Mission statement alongside an Alan Turing inspirational quote panel (*“Sometimes it is the people no one imagines anything of who do the things that no one can imagine.”* — Alan Turing, Father of Modern Computing).
+  - Clean separation, delicate gold/navy branding, responsive desktop side-by-side and mobile vertical stacking without overflow.
 
 ---
 
