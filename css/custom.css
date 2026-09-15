@@ -306,3 +306,12 @@ button:focus-visible {
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   12. Smooth Scroll Margin Offset for Sticky Header
+   ========================================================================== */
+section[id],
+#prizes,
+#student-coordinators {
+  scroll-margin-top: 96px;
+}
+

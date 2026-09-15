@@ -120,8 +120,8 @@ function initMobileDrawer() {
     }
   });
 
-  // Close when clicking any nav link in drawer
-  drawer.querySelectorAll('a').forEach(link => {
+  // Close when clicking any nav link or action in drawer
+  drawer.querySelectorAll('a, button').forEach(link => {
     link.addEventListener('click', () => {
       closeDrawer();
     });
@@ -170,9 +170,6 @@ function initHeaderScroll() {
  * Smooth scrolling powered by Lenis with sticky navbar offset compensation
  */
 function initSmoothScroll() {
-  const header = document.querySelector('header');
-  const headerHeight = header ? header.offsetHeight : 76;
-
   // Initialize Lenis smooth scroll if loaded and user hasn't requested reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let lenisInstance = null;
@@ -180,10 +177,10 @@ function initSmoothScroll() {
   if (typeof window.Lenis !== 'undefined' && !prefersReducedMotion) {
     if (!window.lenis) {
       lenisInstance = new window.Lenis({
-        duration: 1.1,
+        duration: 0.95,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        touchMultiplier: 1.2,
+        syncTouch: true,
       });
 
       function raf(time) {
@@ -209,17 +206,19 @@ function initSmoothScroll() {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 76;
         if (lenisInstance) {
           lenisInstance.scrollTo(targetElement, {
             offset: -headerHeight - 16,
-            duration: 1.2
+            duration: 0.95
           });
         } else {
           const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - headerHeight - 16;
           window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
           });
         }
       }
@@ -347,7 +346,7 @@ function initScrollReveal() {
  * Uses IntersectionObserver, Vanilla JS, and the existing navigation structure.
  */
 function initActiveNav() {
-  const targetSectionIds = ['highlights', 'about', 'prizes', 'venue', 'register'];
+  const targetSectionIds = ['highlights', 'about', 'prizes', 'venue', 'contact', 'register'];
 
   // Query valid elements currently present in the DOM
   const trackedSections = [];
