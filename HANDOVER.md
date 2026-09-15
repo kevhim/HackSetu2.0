@@ -73,7 +73,7 @@ The single entry point containing the full structural markup for the website:
   - Campus address (E-Block Seminar Hall, ASET, Amity Gwalior).
   - Goodies & Perks announcement card.
   - 4 essential facilities cards (High-Speed WiFi, Food & Snacks, Rest Areas, 24/7 Campus Security).
-  - Transit and arrival logistics checklist (What to bring: Valid College ID / Aadhaar ID).
+  - Transit and arrival logistics checklist (What to bring: Valid Student ID / Aadhaar ID).
   - **How to Reach Gwalior**: By Flight (GWL Airport), By Train (Gwalior Junction), By Road (NH44/NH46).
   - **Coming From Across India?**: Multimodal interstate connectivity matrix (Delhi, Agra, Jhansi, Bhopal, Indore, Mumbai, Lucknow, Jaipur).
   - **From Gwalior to Venue**: Local terminal distances and interactive Google Maps link.
