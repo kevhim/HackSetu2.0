@@ -20,9 +20,15 @@ This document provides a detailed overview of all design, content, architectural
   - Added **How to Reach Gwalior** multi-modal transit breakdown (Flight: GWL Airport, Rail: Gwalior Junction, Road: NH44/NH46).
   - Added **Coming From Across India?** interstate connectivity matrix.
   - Added **From Gwalior to the Venue** local terminal distance guide with direct interactive campus map link.
-- **Registration Modal**:
-  - Updated Category 2 title to **REGISTER FOR COLLEGE / UNIVERSITY**.
-  - Verified non-redirecting, active continue buttons and standard ESC/close handlers.
+- **Interactive Smooth Scroll Routing**:
+  - Linked the `[ FOR QUERIES / DOUBTS ]` CTA directly to `#student-coordinators` with automatic navbar offset compensation via Lenis.
+- **Builder Flow Section**:
+  - Added compact **"BRING YOUR IDEA. BUILD IT HERE."** section bridging About and Venue with a 3-step builder flow: *01 Ideate*, *02 Build*, *03 Demonstrate*.
+- **Refined Hackathon Mission & CTA Copy**:
+  - Replaced generic ACC mission copy with: **“FROM PROBLEMS TO PROTOTYPES.”** (*Build solutions that move beyond the idea stage.*).
+  - Updated footer CTA banner headline to: **"READY TO TURN AN IDEA INTO SOMETHING REAL?"** (*Bring your team, pick a problem, and build something worth showing.*).
+- **Venue What to Bring Standardized**:
+  - Standardized checklist item: *Valid Student ID / Aadhaar ID, Laptop, Charger, Extension Cord*.
 
 ---
 
