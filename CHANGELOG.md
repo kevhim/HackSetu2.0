@@ -4,6 +4,28 @@ This document provides a detailed overview of all design, content, architectural
 
 ---
 
+## 0. Latest Updates & Refinements (jaideep-branch)
+
+- **Registration Pricing Standardization**:
+  - Replaced all per-member breakdown references (`₹300/member`) across the entire platform.
+  - Standardized unified team pricing as **₹1,200 PER TEAM** (with supporting text: *Maximum 4 participants per team*).
+- **Eligibility Expansion (School + College / University)**:
+  - Explicitly updated eligibility banners, eyebrows, and subtext: **OPEN FOR SCHOOL & COLLEGE / UNIVERSITY STUDENTS** (Classes 9–12 &bull; UG/PG).
+- **About Page Showcase Cards**:
+  - Replaced duplicate prize pool & registration cards with:
+    1. **Explore Gwalior** — Direct showcase of Gwalior's UNESCO music heritage, Gwalior Fort, and culture linking to official MP Tourism.
+    2. **Amity University Madhya Pradesh** — Host campus profile linking to official AUMP portal.
+- **Venue & Comprehensive Transit Infrastructure**:
+  - Updated "What to Bring" requirements: *Valid College ID / Aadhaar ID, Laptop, Charger, Extension Cord*.
+  - Added **How to Reach Gwalior** multi-modal transit breakdown (Flight: GWL Airport, Rail: Gwalior Junction, Road: NH44/NH46).
+  - Added **Coming From Across India?** interstate connectivity matrix.
+  - Added **From Gwalior to the Venue** local terminal distance guide with direct interactive campus map link.
+- **Registration Modal**:
+  - Updated Category 2 title to **REGISTER FOR COLLEGE / UNIVERSITY**.
+  - Verified non-redirecting, active continue buttons and standard ESC/close handlers.
+
+---
+
 ## 1. Brand Identity & Co-Branded Lockups
 
 - **Navbar Tri-Logo Lockup**:
@@ -24,9 +46,9 @@ This document provides a detailed overview of all design, content, architectural
   - Standardized as **₹2,00,000 Total Rewards Pool**.
   - Replaced individual prize estimations with a verified highlight card featuring Cash Awards, Track Rewards, and Cloud Grants.
 - **Team Capacity**:
-  - Updated nationwide capacity to **200 Teams Only** (Team of 4 members, ~800 collegiate builders).
+  - Updated nationwide capacity to **200 Teams Only** (Maximum 4 participants per team, ~800 participants).
 - **Registration Fee**:
-  - Established clear breakdown: **₹1,200 per team** (**₹300 per member**).
+  - Standardized unified fee: **₹1,200 PER TEAM** (*Maximum 4 participants per team*).
   - Explicitly covers 36-hour event access, overnight campus accommodation, all meals, midnight snacks, continuous coffee, and hackathon kits.
 - **Dates & Venue**:
   - **Dates**: November 2 – 3, 2026 (36 Hours Non-Stop).
