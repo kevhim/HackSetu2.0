@@ -24,9 +24,9 @@ This document provides a detailed overview of all design, content, architectural
   - Linked the `[ FOR QUERIES / DOUBTS ]` CTA directly to `#student-coordinators` with automatic navbar offset compensation via Lenis.
 - **Builder Flow Section**:
   - Added compact **"BRING YOUR IDEA. BUILD IT HERE."** section bridging About and Venue with a 3-step builder flow: *01 Ideate*, *02 Build*, *03 Demonstrate*.
-- **ACC Mission & Alan Turing Editorial Composition**:
-  - Replaced generic copy with high-impact builder mission: **“WE DON’T JUST RUN EVENTS. WE BUILD THE CULTURE.”** (*A community of students who build, lead, create, and make things happen.*).
-  - Designed an elegant two-column responsive editorial layout pairing the ACC Mission statement alongside an Alan Turing inspirational quote panel (*“Sometimes it is the people no one imagines anything of who do the things that no one can imagine.”* — Alan Turing, Father of Modern Computing).
+- **Centered Full-Width ACC Mission Banner**:
+  - Structured the ACC Mission section as a bold, clean, full-width centered banner: **“WE DON’T JUST RUN EVENTS. WE BUILD THE CULTURE.”** (*A community of students who build, lead, create, and make things happen.*).
+  - Centered typography, gold accent eyebrow badge, and warm-toned gradient card without awkward empty columns.
 - **Venue Card Alan Turing Inspiration Card**:
   - Integrated a dedicated Alan Turing inspirational quote card directly below "Goodies & Perks — Included" in the left "E-Block Seminar Hall, ASET" Venue card.
   - Formatted with exact quote (*“Sometimes it is the people no one imagines anything of who do the things that no one can imagine.”*), `INSPIRATION` label, and `Alan Turing — Father of Modern Computing` attribution badge.
