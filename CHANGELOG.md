@@ -27,7 +27,10 @@ This document provides a detailed overview of all design, content, architectural
 - **ACC Mission & Alan Turing Editorial Composition**:
   - Replaced generic copy with high-impact builder mission: **“WE DON’T JUST RUN EVENTS. WE BUILD THE CULTURE.”** (*A community of students who build, lead, create, and make things happen.*).
   - Designed an elegant two-column responsive editorial layout pairing the ACC Mission statement alongside an Alan Turing inspirational quote panel (*“Sometimes it is the people no one imagines anything of who do the things that no one can imagine.”* — Alan Turing, Father of Modern Computing).
-  - Clean separation, delicate gold/navy branding, responsive desktop side-by-side and mobile vertical stacking without overflow.
+- **Venue Card Alan Turing Inspiration Card**:
+  - Integrated a dedicated Alan Turing inspirational quote card directly below "Goodies & Perks — Included" in the left "E-Block Seminar Hall, ASET" Venue card.
+  - Formatted with exact quote (*“Sometimes it is the people no one imagines anything of who do the things that no one can imagine.”*), `INSPIRATION` label, and `Alan Turing — Father of Modern Computing` attribution badge.
+  - Naturally balances vertical height with the right-side Event Logistics card, eliminating whitespace gaps seamlessly.
 
 ---
 
